@@ -46,13 +46,14 @@ export const Footer = () => {
             <Link href="#home" className="text-neutral-300 hover:text-white transition-colors text-sm">Home</Link>
             <Link href="#about" className="text-neutral-300 hover:text-white transition-colors text-sm">About Us</Link>
             <Link href="#services" className="text-neutral-300 hover:text-white transition-colors text-sm">Services</Link>
-            <Link href="#portfolio" className="text-neutral-300 hover:text-white transition-colors text-sm">Portfolio</Link>
+            <Link href="#industries" className="text-neutral-300 hover:text-white transition-colors text-sm">Industries</Link>
+            <Link href="#gallery" className="text-neutral-300 hover:text-white transition-colors text-sm">Gallery</Link>
           </div>
 
           <div className="lg:col-span-2 flex flex-col space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-2">Explore</h4>
-            <Link href="#services" className="text-neutral-300 hover:text-white transition-colors text-sm">Industries</Link>
-            <Link href="#portfolio" className="text-neutral-300 hover:text-white transition-colors text-sm">Opportunities</Link>
+            <Link href="#portfolio" className="text-neutral-300 hover:text-white transition-colors text-sm">Portfolio</Link>
+            <Link href="#gallery" className="text-neutral-300 hover:text-white transition-colors text-sm">Global Footprint</Link>
             <a href="mailto:cm@pearlbay.com" className="text-neutral-300 hover:text-white transition-colors text-sm">Submit Project</a>
             <a href="mailto:cm@pearlbay.com" className="text-neutral-300 hover:text-white transition-colors text-sm">Contact Us</a>
           </div>

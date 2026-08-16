@@ -11,7 +11,10 @@ import { LargeParagraph } from "@/components/ui/LargeParagraph";
 import { BackgroundWord } from "@/components/ui/BackgroundWord";
 import { SplitContent } from "@/components/ui/SplitContent";
 import { ExpertiseCard } from "@/components/ui/ExpertiseCard";
+import { IndustryCard } from "@/components/ui/IndustryCard";
 import { PortfolioCard } from "@/components/ui/PortfolioCard";
+import { GlobalPresence } from "@/components/ui/GlobalPresence";
+import { Gallery } from "@/components/ui/Gallery";
 import { FounderCard } from "@/components/ui/FounderCard";
 import { CTABanner } from "@/components/ui/CTABanner";
 import { Footer } from "@/components/ui/Footer";
@@ -185,55 +188,234 @@ export default function Home() {
       </div>
 
       {/* SECTION 7: Our Services */}
-      <section id="services" className="py-24 md:py-32 px-6 md:px-12 bg-navy-dark relative mt-32 pt-48 pb-32 z-10">
+      <section id="services" className="py-24 md:py-32 px-6 md:px-12 bg-navy-dark relative mt-32 pt-36 pb-32 z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center mb-16 md:mb-24">
             <Tag variant="outline" className="mb-6 border-white/20 text-white bg-white/5">Our Services</Tag>
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 max-w-2xl">
-              Featured Investment Services
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 max-w-3xl">
+              Comprehensive Investment &amp; Advisory Solutions
             </h2>
-            <p className="text-neutral-400 text-lg max-w-xl">
-              From investment consulting to project funding and commodity trading, we provide comprehensive strategic advisory for transformative growth.
+            <p className="text-neutral-400 text-lg max-w-2xl leading-relaxed">
+              Tailored investment strategies, capital syndication, cross-border business development, and rigorous due diligence for global stakeholders.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ExpertiseCard 
-              title="Investment Consulting"
-              description="Helping investors identify profitable and responsible investment opportunities in Sri Lanka and international markets."
-              imageSrc="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Investment Consulting"
+              number="01"
+              category="Advisory"
+              title="Project Consulting"
+              description="End-to-end strategic advisory, feasibility evaluation, and commercial guidance for transformative ventures and high-growth initiatives."
+              imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Project Consulting"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Project%20Consulting'}
             />
             <ExpertiseCard 
+              number="02"
+              category="Capital"
               title="Project Funding"
-              description="Connecting projects with private equity, debt providers, institutional investors, and strategic partners."
+              description="Connecting high-potential projects with private equity, debt providers, institutional syndicates, and strategic international partners."
               imageSrc="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop"
               imageAlt="Project Funding"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Project%20Funding'}
             />
             <ExpertiseCard 
-              title="International Business Development"
-              description="Helping companies expand into the UK, Japan, China, the Middle East, and beyond."
+              number="03"
+              category="Global Expansion"
+              title="International Business"
+              description="Facilitating cross-border market entry, global expansion, joint ventures, and strategic investor introductions across the UK, Middle East, Asia, and Sri Lanka."
               imageSrc="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=800&auto=format&fit=crop"
-              imageAlt="International Business Development"
+              imageAlt="International Business"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20International%20Business'}
             />
             <ExpertiseCard 
-              title="Commodity Trading"
-              description="Facilitating responsible commodity trading with a focus on oil & gas, precious metals, precious stones, and agricultural commodities."
+              number="04"
+              category="Asset Management"
+              title="Investment Management"
+              description="Professional management of client portfolios across selected asset classes, with strategies designed around risk tolerance, investment objectives, and time horizons."
+              imageSrc="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Investment Management"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Investment%20Management'}
+            />
+            <ExpertiseCard 
+              number="05"
+              category="Private Wealth"
+              title="Wealth Management"
+              description="Integrated wealth solutions covering portfolio construction, diversification, wealth preservation, and long-term financial objectives."
+              imageSrc="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Wealth Management"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Wealth%20Management'}
+            />
+            <ExpertiseCard 
+              number="06"
+              category="Alternative Assets"
+              title="Alternative Investments"
+              description="Access to selected alternative investment opportunities that may complement traditional stocks and bonds and enhance portfolio diversification."
+              imageSrc="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Alternative Investments"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Alternative%20Investments'}
+            />
+            <ExpertiseCard 
+              number="07"
+              category="Yield & Debt"
+              title="Fixed Income Investments"
+              description="Capital preservation and predictable yield generation through structured debt, sovereign and corporate bonds, and credit instruments."
               imageSrc="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Commodity Trading"
+              imageAlt="Fixed Income Investments"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Fixed%20Income%20Investments'}
             />
             <ExpertiseCard 
-              title="Project Evaluation"
-              description="Professional feasibility studies, commercial analysis, investment readiness assessments, and due diligence."
-              imageSrc="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Project Evaluation"
+              number="08"
+              category="Commodities"
+              title="Commodity Markets & Trading"
+              description="Facilitating responsible physical and structured commodity trade with a focus on oil & gas, precious metals, gems, and agricultural commodities."
+              imageSrc="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Commodity Markets & Trading"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Commodity%20Markets'}
             />
             <ExpertiseCard 
-              title="Government & Institutional Advisory"
-              description="Economic development initiatives, PPP projects, strategic infrastructure, and foreign investment facilitation."
+              number="09"
+              category="Advisory"
+              title="Portfolio Advisory & Financial Planning"
+              description="Holistic asset allocation models, bespoke financial strategies, and customized advisory for high-net-worth individuals and corporate entities."
+              imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Portfolio Advisory & Financial Planning"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Portfolio%20Advisory'}
+            />
+            <ExpertiseCard 
+              number="10"
+              category="Institutional"
+              title="Corporate & Institutional Investment Solutions"
+              description="Custom capital structuring, institutional fund placement, joint ventures, and strategic corporate investment advisory."
+              imageSrc="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Corporate & Institutional Investment Solutions"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Institutional%20Solutions'}
+            />
+            <ExpertiseCard 
+              number="11"
+              category="Risk & Governance"
+              title="Risk Management & Portfolio Diversification"
+              description="Robust risk assessment frameworks, multi-asset diversification strategies, and downside exposure hedging to insulate and preserve capital."
+              imageSrc="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Risk Management & Portfolio Diversification"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Risk%20Management'}
+            />
+            <ExpertiseCard 
+              number="12"
+              category="Due Diligence"
+              title="Investment Due Diligence & Verification"
+              description="Comprehensive commercial feasibility studies, risk audits, regulatory compliance verification, and investment readiness assessments."
+              imageSrc="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Investment Due Diligence & Verification"
+              onAction={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Due%20Diligence'}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: Giant Background Word */}
+      <div className="relative h-[40vh] overflow-hidden my-20 flex items-center justify-center bg-white">
+        <BackgroundWord text="INDUSTRIES" />
+      </div>
+
+      {/* SECTION 9: Industries */}
+      <section id="industries" className="py-24 md:py-32 px-6 md:px-12 bg-white relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <Tag variant="dark" className="mb-6">Industry Focus</Tag>
+              <h2 className="text-3xl md:text-5xl font-bold text-navy-dark tracking-tight mb-6">
+                Key Industries &amp; Strategic Sectors
+              </h2>
+              <p className="text-neutral-600 text-lg leading-relaxed">
+                CM Investments deploys capital, advisory, and cross-border partnerships across key economic sectors driving long-term sustainability and global growth.
+              </p>
+            </div>
+            <Button 
+              variant="primary" 
+              size="md"
+              className="hidden md:inline-flex rounded-full px-8 py-4"
+              onClick={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Industry%20Partnership%20Inquiry'}
+            >
+              Discuss Your Sector
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <IndustryCard 
+              number="01"
+              title="Energy"
+              description="Renewable energy infrastructure, clean power transitions, solar & wind utilities, and strategic cross-border energy transactions."
+              tags={["Renewables", "Clean Power", "Infrastructure"]}
+              imageSrc="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Energy Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Energy%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="02"
+              title="Healthcare and Pharmaceuticals"
+              description="Advanced healthcare facilities, pharmaceutical manufacturing, medical innovation, and specialized healthcare infrastructure."
+              tags={["Pharma", "Medical Tech", "Healthcare"]}
+              imageSrc="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Healthcare and Pharmaceuticals Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Healthcare%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="03"
+              title="Education"
+              description="Higher education institutes, creative arts academies, vocational skill-building programs, and cross-border academic partnerships."
+              tags={["Academia", "Institutes", "Skill Building"]}
+              imageSrc="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Education Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Education%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="04"
+              title="Technology & Software"
+              description="Enterprise software development, fintech ecosystems, artificial intelligence, cloud architectures, and digital transformation."
+              tags={["Enterprise Tech", "Fintech", "AI & Cloud"]}
+              imageSrc="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Technology & Software Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Technology%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="05"
+              title="Financial Services"
+              description="Capital markets, asset management, private equity placement, banking advisory, and institutional wealth structuring."
+              tags={["Capital Markets", "Asset Management", "Banking"]}
               imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Government & Institutional Advisory"
+              imageAlt="Financial Services Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Financial%20Services%20Inquiry'}
             />
+            <IndustryCard 
+              number="06"
+              title="Metals"
+              description="Precious metals trading, industrial mineral extraction, physical bullion structuring, and high-value global commodities."
+              tags={["Precious Metals", "Minerals", "Trade"]}
+              imageSrc="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Metals Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Metals%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="07"
+              title="Professional Services / Consulting"
+              description="Corporate advisory, international market entry, cross-border M&A consulting, legal structuring, and commercial representation."
+              tags={["Strategic Advisory", "Corporate M&A", "Consulting"]}
+              imageSrc="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Professional Services and Consulting Sector"
+              className="md:col-span-2 lg:col-span-1"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Consulting%20Sector%20Inquiry'}
+            />
+          </div>
+
+          <div className="mt-10 flex justify-center md:hidden">
+            <Button 
+              variant="primary" 
+              className="w-full sm:w-auto rounded-full"
+              onClick={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Industry%20Partnership%20Inquiry'}
+            >
+              Discuss Your Sector
+            </Button>
           </div>
         </div>
       </section>
@@ -260,48 +442,14 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <PortfolioCard 
-              category="Music & IP Publishing"
-              title="Pearlbay Music"
-              summary="Supporting the commercial growth of music, entertainment, intellectual property, and creative businesses through strategic publishing initiatives."
-              imageSrc="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Pearlbay Music Studio"
-            />
-            <PortfolioCard 
-              category="Education & Skill Building"
-              title="Pearlbay Institute"
-              summary="Empowering students and professionals with industry-relevant education, creative arts training, and modern commercial capabilities."
-              imageSrc="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Pearlbay Institute Classroom"
-            />
+          <div className="max-w-2xl mx-auto">
             <PortfolioCard 
               category="Environmental Technology"
               title="Turu (Pvt) Ltd."
               summary="Technological innovation focused on environmental sustainability, reforestation initiatives, and eco-friendly impact investments."
               imageSrc="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop"
               imageAlt="Turu Reforestation Project"
-            />
-            <PortfolioCard 
-              category="Business Transformation"
-              title="Optimus Lanka"
-              summary="Operational transformation, market strategy execution, and high-growth commercial representation across key South Asian sectors."
-              imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Optimus Lanka Operations"
-            />
-            <PortfolioCard 
-              category="Renewable Energy"
-              title="Clean Energy & Infrastructure"
-              summary="Financing and developing sustainable energy infrastructure and renewable grid integration projects."
-              imageSrc="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Clean Energy Solar Grid"
-            />
-            <PortfolioCard 
-              category="Commodities"
-              title="Commodity Trading Division"
-              summary="Facilitating responsible international trade focused on oil & gas, precious metals, gems, and agricultural commodities."
-              imageSrc="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Commodity Logistics"
+              onReadMore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Turu%20Pvt%20Ltd'}
             />
           </div>
           
@@ -317,7 +465,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 9: Founder Section */}
+      {/* SECTION 9: International Footprint & Country Flags */}
+      <GlobalPresence />
+
+      {/* SECTION 10: Global Gallery Section */}
+      <Gallery />
+
+      {/* SECTION 11: Founder Section */}
       <section className="py-24 md:py-32 px-6 md:px-12 bg-white">
         <FounderCard 
           name="Chathura Masinha"
@@ -339,7 +493,7 @@ export default function Home() {
         />
       </section>
 
-      {/* SECTION 10: CTA Section */}
+      {/* SECTION 12: CTA Section */}
       <CTABanner 
         title="Ready to Take Your Business to the Next Level?"
         description="Let's discuss your project. Schedule a confidential consultation with our advisory team to explore funding, strategic partnerships, and growth opportunities."
@@ -347,7 +501,7 @@ export default function Home() {
         onButtonClick={() => window.location.href = 'mailto:cm@pearlbay.com'}
       />
 
-      {/* SECTION 11: Footer */}
+      {/* SECTION 13: Footer */}
       <Footer />
     </main>
   );

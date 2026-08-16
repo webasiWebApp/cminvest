@@ -11,7 +11,10 @@ export interface ExpertiseCardProps {
   description: string;
   imageSrc: string;
   imageAlt: string;
+  category?: string;
+  number?: string;
   className?: string;
+  onAction?: () => void;
 }
 
 export const ExpertiseCard = ({
@@ -19,7 +22,10 @@ export const ExpertiseCard = ({
   description,
   imageSrc,
   imageAlt,
+  category,
+  number,
   className,
+  onAction,
 }: ExpertiseCardProps) => {
   return (
     <motion.div
@@ -27,7 +33,7 @@ export const ExpertiseCard = ({
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={cn(
         "group flex flex-col h-full bg-navy-dark rounded-2xl md:rounded-[24px] overflow-hidden border border-white/5",
-        "hover:shadow-2xl hover:shadow-black/50",
+        "hover:shadow-2xl hover:shadow-black/50 hover:border-white/20 transition-all duration-300",
         className
       )}
     >
@@ -40,11 +46,29 @@ export const ExpertiseCard = ({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/40 to-transparent" />
+        
+        {(category || number) && (
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+            {number && (
+              <span className="text-[11px] font-mono font-bold tracking-wider text-blue-400 bg-navy-dark/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-blue-500/30">
+                {number}
+              </span>
+            )}
+            {category && (
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-200 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+                {category}
+              </span>
+            )}
+          </div>
+        )}
       </div>
       
       <div className="flex flex-col flex-grow p-8 -mt-12 relative z-10">
-        <div className="bg-navy-light w-12 h-12 rounded-full flex items-center justify-center shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300">
-          <ArrowRight className="w-5 h-5 text-white" />
+        <div 
+          onClick={onAction}
+          className="bg-navy-light w-12 h-12 rounded-full flex items-center justify-center shadow-lg mb-6 group-hover:scale-110 group-hover:bg-[#3B82F6] transition-all duration-300 cursor-pointer"
+        >
+          <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-0.5 transition-transform" />
         </div>
         
         <h3 className="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">

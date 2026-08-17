@@ -389,7 +389,7 @@ export default function Home() {
             />
             <IndustryCard 
               number="06"
-              title="Metals"
+              title="Metals & Mining"
               description="Precious metals trading, industrial mineral extraction, physical bullion structuring, and high-value global commodities."
               tags={["Precious Metals", "Minerals", "Trade"]}
               imageSrc="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=800&auto=format&fit=crop"
@@ -445,9 +445,9 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <PortfolioCard 
               category="Environmental Technology"
-              title="Turu (Pvt) Ltd."
+              title="Turu"
               summary="Technological innovation focused on environmental sustainability, reforestation initiatives, and eco-friendly impact investments."
-              imageSrc="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop"
+              imageSrc="/company logos/turu.png"
               imageAlt="Turu Reforestation Project"
               onReadMore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Turu%20Pvt%20Ltd'}
             />

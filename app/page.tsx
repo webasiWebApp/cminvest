@@ -78,7 +78,7 @@ export default function Home() {
             
             {/* Stats Left */}
             <div className="flex flex-wrap gap-8 md:gap-12 items-center">
-              <StatCounter value={120} prefix="$" suffix="B+" label="Energy Transactions" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
+              <StatCounter value={18} prefix="$" suffix="B+" label="Energy Transactions" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
               <StatCounter value={100} suffix="%" label="Sustainable Impact" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
               <StatCounter value={15} prefix="+" label="Sectors Covered" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
               <StatCounter value={5} prefix="" suffix="+" label="Global Markets" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />

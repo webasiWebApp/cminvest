@@ -90,6 +90,38 @@ export const Navigation = () => {
     }
   }, [isMobileMenuOpen]);
 
+  // Scrollspy functionality
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-40% 0px -60% 0px",
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const currentLink = navLinks.find((link) => link.href === `#${id}`);
+          if (currentLink) {
+            setActiveLink(currentLink.name);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    navLinks.forEach((link) => {
+      const id = link.href.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <motion.nav
@@ -128,7 +160,7 @@ export const Navigation = () => {
               ))}
             </div>
             
-            <Button variant="primary" size="sm" onClick={() => window.location.href = 'mailto:cm@pearlbay.com'}>
+            <Button variant="primary" size="sm" href="mailto:cm@pearlbay.com">
               Contact Us
             </Button>
           </div>
@@ -194,7 +226,7 @@ export const Navigation = () => {
               </div>
 
               <div className="mt-auto pt-8 border-t border-neutral-100">
-                <Button variant="primary" size="md" className="w-full" onClick={() => { setIsMobileMenuOpen(false); window.location.href = 'mailto:cm@pearlbay.com'; }}>
+                <Button variant="primary" size="md" className="w-full" href="mailto:cm@pearlbay.com" onClick={() => setIsMobileMenuOpen(false)}>
                   Contact Us
                 </Button>
               </div>

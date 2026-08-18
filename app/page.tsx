@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Beams from './Beams';
+import { HeroSlider } from '@/components/ui/HeroSlider';
 import { Navigation } from "@/components/ui/Navigation";
 import { Tag } from "@/components/ui/Tag";
 import { HeroTitle } from "@/components/ui/HeroTitle";
@@ -26,20 +26,8 @@ export default function Home() {
 
       {/* SECTION 1: Hero Section */}
       <section id="home" className="relative min-h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-32 pb-20 overflow-hidden bg-navy-dark">
-        {/* Background Beams */}
-        <div className="absolute inset-0 z-0">
-          <Beams
-            beamWidth={1.9}
-            beamHeight={30}
-            beamNumber={20}
-            lightColor="#3B82F6"
-            speed={2}
-            noiseIntensity={0}
-            scale={0.2}
-            rotation={49}
-            className="w-full h-full"
-          />
-        </div>
+        {/* Background Slider */}
+        <HeroSlider />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col justify-between flex-grow mt-12 md:mt-24">
           
@@ -66,7 +54,7 @@ export default function Home() {
                 variant="primary" 
                 size="lg" 
                 className="px-10 py-4 font-semibold uppercase tracking-wide text-sm rounded-full bg-navy-light hover:bg-navy-light/90 border border-white/20"
-                onClick={() => window.location.href = 'mailto:cm@pearlbay.com'}
+                href="mailto:cm@pearlbay.com"
               >
                 Submit Your Project
               </Button>
@@ -165,7 +153,7 @@ export default function Home() {
               variant="primary" 
               size="md" 
               className="px-8 py-4 rounded-full"
-              onClick={() => window.location.href = 'mailto:cm@pearlbay.com'}
+              href="mailto:cm@pearlbay.com"
             >
               Book a Consultation
             </Button>
@@ -335,7 +323,7 @@ export default function Home() {
               variant="primary" 
               size="md"
               className="hidden md:inline-flex rounded-full px-8 py-4"
-              onClick={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Industry%20Partnership%20Inquiry'}
+              href="mailto:cm@pearlbay.com?subject=Industry%20Partnership%20Inquiry"
             >
               Discuss Your Sector
             </Button>
@@ -412,7 +400,7 @@ export default function Home() {
             <Button 
               variant="primary" 
               className="w-full sm:w-auto rounded-full"
-              onClick={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Industry%20Partnership%20Inquiry'}
+              href="mailto:cm@pearlbay.com?subject=Industry%20Partnership%20Inquiry"
             >
               Discuss Your Sector
             </Button>
@@ -436,28 +424,40 @@ export default function Home() {
             <Button 
               variant="text" 
               className="hidden md:inline-flex mb-2 text-lg"
-              onClick={() => window.location.href = 'mailto:cm@pearlbay.com'}
+              href="mailto:cm@pearlbay.com"
             >
               Submit Your Project
             </Button>
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <PortfolioCard 
-              category="Environmental Technology"
-              title="Turu"
-              summary="Technological innovation focused on environmental sustainability, reforestation initiatives, and eco-friendly impact investments."
-              imageSrc="/company logos/turu.png"
-              imageAlt="Turu Reforestation Project"
-              onReadMore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Turu%20Pvt%20Ltd'}
-            />
+          <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24 max-w-5xl mx-auto mt-12">
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Bussa" className="flex flex-col items-center gap-5 group">
+              <div className="w-32 h-32 md:w-48 md:h-48 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+                <img src="/company logos/bussa.jpg" alt="Bussa" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
+              </div>
+      
+            </a>
+            
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Pearlbay" className="flex flex-col items-center gap-5 group">
+              <div className="w-32 h-32 md:w-48 md:h-48 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+                <img src="/company logos/pearlbay.png" alt="Pearlbay" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
+              </div>
+            
+            </a>
+            
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Turu" className="flex flex-col items-center gap-5 group">
+              <div className="w-32 h-32 md:w-48 md:h-48 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+                <img src="/company logos/turu.png" alt="Turu" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
+              </div>
+             
+            </a>
           </div>
           
           <div className="mt-10 flex justify-center md:hidden">
             <Button 
               variant="secondary" 
               className="w-full sm:w-auto"
-              onClick={() => window.location.href = 'mailto:cm@pearlbay.com'}
+              href="mailto:cm@pearlbay.com"
             >
               Submit Your Project
             </Button>
@@ -498,7 +498,7 @@ export default function Home() {
         title="Ready to Take Your Business to the Next Level?"
         description="Let's discuss your project. Schedule a confidential consultation with our advisory team to explore funding, strategic partnerships, and growth opportunities."
         buttonText="Book a Consultation"
-        onButtonClick={() => window.location.href = 'mailto:cm@pearlbay.com'}
+        buttonHref="mailto:cm@pearlbay.com"
       />
 
       {/* SECTION 13: Footer */}

@@ -10,6 +10,7 @@ export interface CTABannerProps {
   description: string;
   buttonText: string;
   onButtonClick?: () => void;
+  buttonHref?: string;
   className?: string;
 }
 
@@ -18,6 +19,7 @@ export const CTABanner = ({
   description,
   buttonText,
   onButtonClick,
+  buttonHref,
   className,
 }: CTABannerProps) => {
   return (
@@ -60,6 +62,7 @@ export const CTABanner = ({
               variant="secondary" 
               size="lg"
               onClick={onButtonClick}
+              href={buttonHref}
             >
               {buttonText}
             </Button>

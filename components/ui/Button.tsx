@@ -8,15 +8,17 @@ import { cn } from "@/lib/utils";
 export type ButtonVariant = "primary" | "secondary" | "text";
 export type ButtonSize = "sm" | "md" | "lg";
 
-export interface ButtonProps extends Omit<HTMLMotionProps<"button">, "variant" | "size" | "children"> {
+export interface ButtonProps extends Omit<HTMLMotionProps<"button">, "variant" | "size" | "children" | "href"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: React.ReactNode;
   loading?: boolean;
   children?: React.ReactNode;
+  href?: string;
+  target?: string;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLElement, ButtonProps>(
   (
     {
       className,
@@ -26,6 +28,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       disabled,
       children,
+      href,
+      target,
       ...props
     },
     ref
@@ -43,7 +47,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const sizes = {
       sm: "px-4 py-2 text-sm",
-      md: "px-9 py-4 text-base", // 18x36 approx
+      md: "px-9 py-4 text-base",
       lg: "px-10 py-5 text-lg",
     };
 
@@ -56,15 +60,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const isText = variant === "text";
     const appliedSize = isText ? textSizes[size] : sizes[size];
 
-    return (
-      <motion.button
-        ref={ref}
-        className={cn(baseStyles, variants[variant], appliedSize, className)}
-        disabled={disabled || loading}
-        whileHover={!disabled && !isText ? { y: -2 } : {}}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        {...props}
-      >
+    const content = (
+      <>
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {!loading && icon && <span className="mr-2">{icon}</span>}
         
@@ -78,6 +75,43 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isText && !loading && (
           <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         )}
+      </>
+    );
+
+    const commonProps = {
+      className: cn(baseStyles, variants[variant], appliedSize, className),
+      whileHover: !disabled && !isText ? { y: -2 } : {},
+      transition: { duration: 0.3, ease: "easeOut" },
+    };
+
+    if (href) {
+      return (
+        <motion.a
+          ref={ref as any}
+          href={href}
+          target={target}
+          className={commonProps.className}
+          whileHover={commonProps.whileHover}
+          transition={commonProps.transition as any}
+          // @ts-ignore - motion.a accepts these but omit types are complex
+          {...props}
+        >
+          {content}
+        </motion.a>
+      );
+    }
+
+    return (
+      <motion.button
+        ref={ref as any}
+        className={commonProps.className}
+        disabled={disabled || loading}
+        whileHover={commonProps.whileHover}
+        transition={commonProps.transition as any}
+        // @ts-ignore
+        {...props}
+      >
+        {content}
       </motion.button>
     );
   }

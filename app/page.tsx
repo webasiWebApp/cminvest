@@ -18,6 +18,7 @@ import { Gallery } from "@/components/ui/Gallery";
 import { FounderCard } from "@/components/ui/FounderCard";
 import { CTABanner } from "@/components/ui/CTABanner";
 import { Footer } from "@/components/ui/Footer";
+import { InvestmentForm } from "@/components/ui/InvestmentForm";
 
 export default function Home() {
   return (
@@ -493,7 +494,10 @@ export default function Home() {
         />
       </section>
 
-      {/* SECTION 12: CTA Section */}
+      {/* SECTION 12: Investment Form Section */}
+      <InvestmentForm />
+
+      {/* SECTION 13: CTA Section */}
       <CTABanner 
         title="Ready to Take Your Business to the Next Level?"
         description="Let's discuss your project. Schedule a confidential consultation with our advisory team to explore funding, strategic partnerships, and growth opportunities."

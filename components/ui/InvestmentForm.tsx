@@ -1,17 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
-
-interface Country {
-  name: {
-    common: string;
-  };
-}
+import countriesData from "../../countries.json";
 
 export function InvestmentForm() {
-  const [countries, setCountries] = useState<string[]>([]);
+  const countries = countriesData.map((c) => c.name).sort((a, b) => a.localeCompare(b));
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,17 +18,7 @@ export function InvestmentForm() {
     description: "",
   });
 
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all?fields=name")
-      .then((res) => res.json())
-      .then((data: Country[]) => {
-        const countryNames = data
-          .map((country) => country.name.common)
-          .sort((a, b) => a.localeCompare(b));
-        setCountries(countryNames);
-      })
-      .catch((err) => console.error("Error fetching countries:", err));
-  }, []);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
@@ -41,23 +27,28 @@ export function InvestmentForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Default fallback action is mailto if not using an API
-    const subject = `Investment Interest: ${formData.name}`;
-    const body = `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Country: ${formData.country}
-Investment Range: ${formData.investmentRange}
-Industry of Interest: ${formData.industry}
+    setStatus("loading");
 
-Description:
-${formData.description}
-    `.trim();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    window.location.href = `mailto:cm@pearlbay.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      setStatus("error");
+    }
   };
 
   const inputStyles = "w-full px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-light focus:border-transparent transition-all";
@@ -204,9 +195,25 @@ ${formData.description}
           </div>
 
           <div className="text-center">
-            <Button type="submit" variant="primary" size="lg" className="w-full md:w-auto px-12 py-4 rounded-full">
-              Submit Application
-            </Button>
+            {status === "error" && (
+              <p className="text-red-500 mb-4">Something went wrong. Please try again later or email us directly.</p>
+            )}
+            {status === "success" ? (
+              <div className="bg-green-50 text-green-700 p-6 rounded-xl border border-green-200">
+                <h3 className="text-xl font-semibold mb-2">Application Submitted!</h3>
+                <p>Thank you for your interest. Our team will get back to you shortly.</p>
+              </div>
+            ) : (
+              <Button 
+                type="submit" 
+                variant="primary" 
+                size="lg" 
+                className="w-full md:w-auto px-12 py-4 rounded-full"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Submitting..." : "Submit Application"}
+              </Button>
+            )}
           </div>
         </form>
       </div>

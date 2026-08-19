@@ -93,8 +93,7 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(
           className={commonProps.className}
           whileHover={commonProps.whileHover}
           transition={commonProps.transition as any}
-          // @ts-ignore - motion.a accepts these but omit types are complex
-          {...props}
+          {...(props as any)}
         >
           {content}
         </motion.a>

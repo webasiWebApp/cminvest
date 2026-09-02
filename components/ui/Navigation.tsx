@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -14,6 +15,7 @@ const navLinks = [
   { name: "Industries", href: "#industries" },
   { name: "Portfolio", href: "#portfolio" },
   { name: "Gallery", href: "#gallery" },
+  { name: "Million Project", href: "/million-project" },
 ];
 
 const NavLink = ({
@@ -61,11 +63,25 @@ const NavLink = ({
 };
 
 export const Navigation = () => {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
+  // Pre-set active link based on current route
+  const [activeLink, setActiveLink] = useState(() =>
+    pathname?.startsWith("/service") ? "Services" :
+    pathname?.startsWith("/million-project") ? "Million Project" : "Home"
+  );
   const { scrollY } = useScroll();
+
+  // Keep active link in sync when pathname changes (e.g. navigating back)
+  useEffect(() => {
+    if (pathname?.startsWith("/service")) {
+      setActiveLink("Services");
+    } else if (pathname?.startsWith("/million-project")) {
+      setActiveLink("Million Project");
+    }
+  }, [pathname]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;

@@ -54,7 +54,8 @@ export const Footer = () => {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-2">Explore</h4>
             <Link href="#portfolio" className="text-neutral-300 hover:text-white transition-colors text-sm">Portfolio</Link>
             <Link href="#gallery" className="text-neutral-300 hover:text-white transition-colors text-sm">Global Footprint</Link>
-            <a href="mailto:cm@pearlbay.com" className="text-neutral-300 hover:text-white transition-colors text-sm">Submit Project</a>
+            <Link href="/million-project" className="text-neutral-300 hover:text-white transition-colors text-sm">Million Project</Link>
+            <Link href="/service" className="text-neutral-300 hover:text-white transition-colors text-sm">Our Services</Link>
             <a href="mailto:cm@pearlbay.com" className="text-neutral-300 hover:text-white transition-colors text-sm">Contact Us</a>
           </div>
 

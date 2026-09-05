@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, Banknote, Rocket } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function FloatingButtons() {
+  const router = useRouter();
   const [hoveredBtn, setHoveredBtn] = useState<string | null>(null);
 
   const buttons = [
@@ -13,7 +16,7 @@ export default function FloatingButtons() {
       label: "INVEST",
       tooltip: "Discover investment opportunities",
       icon: <TrendingUp size={15} />,
-      href: "#invest",
+      href: "/service?type=invest",
       bg: "linear-gradient(135deg, #081B52 0%, #1a3680 100%)",
       bgHover: "linear-gradient(135deg, #040d29 0%, #081B52 100%)",
       shadow: "0 8px 32px rgba(8,27,82,0.50)",
@@ -25,7 +28,7 @@ export default function FloatingButtons() {
       label: "GET FUNDING",
       tooltip: "Submit your project to funding",
       icon: <Banknote size={15} />,
-      href: "#funding",
+      href: "/service?type=funding",
       bg: "linear-gradient(135deg, #b8943b 0%, #d4a94e 100%)",
       bgHover: "linear-gradient(135deg, #9e7e2e 0%, #b8943b 100%)",
       shadow: "0 8px 32px rgba(180,140,50,0.45)",
@@ -34,8 +37,8 @@ export default function FloatingButtons() {
     },
     {
       id: "million",
-      label: "1M PROJECT",
-      tooltip: "Apply to the CM Million Project — up to LKR 1M",
+      label: "1M CM E3™",
+      tooltip: "Emerging Entrepreneurs & Enterprises ",
       icon: <Rocket size={15} />,
       href: "/million-project#apply",
       bg: "linear-gradient(135deg, #065f46 0%, #059669 100%)",
@@ -45,6 +48,51 @@ export default function FloatingButtons() {
       tooltipColor: "#065f46",
     },
   ];
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (typeof window === "undefined") return;
+
+    try {
+      const url = new URL(href, window.location.origin);
+      const targetPath = url.pathname;
+      const targetSearch = url.search;
+      const targetHash = url.hash;
+      const currentPath = window.location.pathname;
+      const currentSearch = window.location.search;
+
+      // 1. Same-page hash navigation (e.g. already on /million-project and clicking /million-project#apply)
+      if (targetHash && currentPath === targetPath) {
+        e.preventDefault();
+        const elementId = targetHash.replace("#", "");
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.history.pushState(null, "", href);
+        }
+        return;
+      }
+
+      // 2. Tab switching or re-clicking on /service page
+      if (currentPath === "/service" && targetPath === "/service") {
+        e.preventDefault();
+        if (currentSearch === targetSearch) {
+          // Already on this tab -> smooth scroll to top
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          // Switch tab and smooth scroll to top
+          router.push(href);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        return;
+      }
+    } catch {
+      // Fallback: let standard link navigation proceed
+    }
+  };
 
   return (
     <div
@@ -69,81 +117,86 @@ export default function FloatingButtons() {
             onMouseLeave={() => setHoveredBtn(null)}
           >
             {/* Button */}
-            <motion.a
-              href={btn.href}
+            <motion.div
               initial={{ x: -140, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               whileHover={{ x: 6, scale: 1.04 }}
               transition={{ delay: 0.4 + index * 0.12, type: "spring", stiffness: 280, damping: 22 }}
-              style={{
-                position: "relative",
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                paddingLeft: "14px",
-                paddingRight: "20px",
-                paddingTop: "13px",
-                paddingBottom: "13px",
-                borderRadius: "0 50px 50px 0",
-                background: isHovered ? btn.bgHover : btn.bg,
-                boxShadow: isHovered ? btn.shadowHover : btn.shadow,
-                color: "#ffffff",
-                textDecoration: "none",
-                fontFamily: "var(--font-geist-sans), Inter, system-ui, sans-serif",
-                fontSize: "11.5px",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                cursor: "pointer",
-                userSelect: "none",
-                whiteSpace: "nowrap",
-                transition: "background 0.3s ease, box-shadow 0.3s ease",
-              }}
+              style={{ display: "flex" }}
             >
-              {/* Shine sweep */}
-              <AnimatePresence>
-                {isHovered && (
-                  <motion.span
-                    key="shine"
-                    initial={{ x: "-100%" }}
-                    animate={{ x: "220%" }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.55, ease: "easeOut" }}
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background:
-                        "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%)",
-                      pointerEvents: "none",
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* Left accent bar */}
-              <motion.span
-                animate={{ height: isHovered ? 22 : 18 }}
-                transition={{ duration: 0.2 }}
+              <Link
+                href={btn.href}
+                onClick={(e) => handleNavClick(e, btn.href)}
                 style={{
-                  width: "3px",
-                  borderRadius: "2px",
-                  background: "rgba(255,255,255,0.55)",
-                  flexShrink: 0,
-                  display: "block",
+                  position: "relative",
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  paddingLeft: "14px",
+                  paddingRight: "20px",
+                  paddingTop: "13px",
+                  paddingBottom: "13px",
+                  borderRadius: "0 50px 50px 0",
+                  background: isHovered ? btn.bgHover : btn.bg,
+                  boxShadow: isHovered ? btn.shadowHover : btn.shadow,
+                  color: "#ffffff",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-geist-sans), Inter, system-ui, sans-serif",
+                  fontSize: "11.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  cursor: "pointer",
+                  userSelect: "none",
+                  whiteSpace: "nowrap",
+                  transition: "background 0.3s ease, box-shadow 0.3s ease",
                 }}
-              />
+              >
+                {/* Shine sweep */}
+                <AnimatePresence>
+                  {isHovered && (
+                    <motion.span
+                      key="shine"
+                      initial={{ x: "-100%" }}
+                      animate={{ x: "220%" }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background:
+                          "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%)",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  )}
+                </AnimatePresence>
 
-              {/* Icon */}
-              <span style={{ display: "flex", alignItems: "center", opacity: 0.9 }}>
-                {btn.icon}
-              </span>
+                {/* Left accent bar */}
+                <motion.span
+                  animate={{ height: isHovered ? 22 : 18 }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    width: "3px",
+                    borderRadius: "2px",
+                    background: "rgba(255,255,255,0.55)",
+                    flexShrink: 0,
+                    display: "block",
+                  }}
+                />
 
-              {/* Label */}
-              <span>{btn.label}</span>
-            </motion.a>
+                {/* Icon */}
+                <span style={{ display: "flex", alignItems: "center", opacity: 0.9 }}>
+                  {btn.icon}
+                </span>
+
+                {/* Label */}
+                <span>{btn.label}</span>
+              </Link>
+            </motion.div>
 
             {/* Tooltip */}
             <AnimatePresence>

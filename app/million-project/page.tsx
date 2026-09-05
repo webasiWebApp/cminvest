@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, type Transition } from "framer-motion";
 import { Navigation } from "@/components/ui/Navigation";
 import { Footer } from "@/components/ui/Footer";
@@ -46,16 +46,124 @@ const STEPS = [
 const QUESTIONS = ["Who do I speak to about my business?","How do I price my product or service?","How do I find my first customers?","How do I register my business?","How do I approach an investor?","How do I expand internationally?","How do I manage my digital marketing","How do I manage my accounts and finance","Anything else"];
 
 export default function MillionProjectPage() {
-  const [applyData, setApplyData] = useState({ formType:"million-project", name:"", age:"", district:"", email:"", phone:"", background:"", businessName:"", industry:"", stage:"", problem:"", solution:"", customers:"", revenueModel:"", fundingAmount:"", fundingUse:"", differentiation:"", jobsCreated:"", benefitToSriLanka:"", socialAngle:"", exportPotential:"" });
-  const [applyStatus, setApplyStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
-  const [partnerData, setPartnerData] = useState({ formType:"million-project-partner", name:"", email:"", phone:"", company:"", investmentInterest:"", message:"" });
-  const [partnerStatus, setPartnerStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
+  const initialApplyData = {
+    formType: "million-project",
+    name: "",
+    age: "",
+    district: "",
+    email: "",
+    phone: "",
+    background: "",
+    businessName: "",
+    industry: "",
+    stage: "",
+    problem: "",
+    solution: "",
+    customers: "",
+    revenueModel: "",
+    fundingAmount: "",
+    fundingUse: "",
+    differentiation: "",
+    jobsCreated: "",
+    benefitToSriLanka: "",
+    socialAngle: "",
+    exportPotential: "",
+  };
 
-  const onApplyChange = (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) => setApplyData(p => ({ ...p, [e.target.name]: e.target.value }));
-  const onPartnerChange = (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) => setPartnerData(p => ({ ...p, [e.target.name]: e.target.value }));
+  const initialPartnerData = {
+    formType: "million-project-partner",
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    investmentInterest: "",
+    message: "",
+  };
 
-  const onApplySubmit = async (e: React.FormEvent) => { e.preventDefault(); setApplyStatus("loading"); try { const r = await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(applyData)}); setApplyStatus(r.ok?"success":"error"); } catch { setApplyStatus("error"); } };
-  const onPartnerSubmit = async (e: React.FormEvent) => { e.preventDefault(); setPartnerStatus("loading"); try { const r = await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(partnerData)}); setPartnerStatus(r.ok?"success":"error"); } catch { setPartnerStatus("error"); } };
+  const [applyData, setApplyData] = useState(initialApplyData);
+  const [applyStatus, setApplyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [applyError, setApplyError] = useState("");
+
+  const [partnerData, setPartnerData] = useState(initialPartnerData);
+  const [partnerStatus, setPartnerStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [partnerError, setPartnerError] = useState("");
+
+  const onApplyChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setApplyData((p) => ({ ...p, [name]: value }));
+  };
+
+  const onPartnerChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setPartnerData((p) => ({ ...p, [name]: value }));
+  };
+
+  const onApplySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setApplyStatus("loading");
+    setApplyError("");
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(applyData),
+      });
+      const res = await r.json().catch(() => ({}));
+      if (r.ok && res.success !== false) {
+        setApplyStatus("success");
+      } else {
+        setApplyError(res.error || "Failed to submit application. Please try again or email cm@pearlbay.com directly.");
+        setApplyStatus("error");
+      }
+    } catch {
+      setApplyError("Network connection error. Please try again or email cm@pearlbay.com directly.");
+      setApplyStatus("error");
+    }
+  };
+
+  const onPartnerSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPartnerStatus("loading");
+    setPartnerError("");
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(partnerData),
+      });
+      const res = await r.json().catch(() => ({}));
+      if (r.ok && res.success !== false) {
+        setPartnerStatus("success");
+      } else {
+        setPartnerError(res.error || "Failed to submit enquiry. Please try again or email cm@pearlbay.com directly.");
+        setPartnerStatus("error");
+      }
+    } catch {
+      setPartnerError("Network connection error. Please try again or email cm@pearlbay.com directly.");
+      setPartnerStatus("error");
+    }
+  };
+
+  // Smooth scroll to target section when landing with a hash (e.g. #apply or #partner)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const scrollToHash = () => {
+        const hash = window.location.hash;
+        if (hash) {
+          const el = document.getElementById(hash.replace("#", ""));
+          if (el) {
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 300);
+          }
+        }
+      };
+
+      scrollToHash();
+      window.addEventListener("hashchange", scrollToHash);
+      return () => window.removeEventListener("hashchange", scrollToHash);
+    }
+  }, []);
 
   const fadeTransition: Transition = { duration: 0.7, ease: "easeOut" };
   const fu = { initial:{opacity:0,y:30}, whileInView:{opacity:1,y:0}, viewport:{once:true,margin:"-80px"}, transition: fadeTransition };
@@ -72,7 +180,7 @@ export default function MillionProjectPage() {
         </div>
         <div className="relative max-w-5xl mx-auto text-center">
           <motion.div {...fu}>
-            <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase text-blue-400 mb-6 border border-blue-400/30 rounded-full px-4 py-1.5 bg-blue-400/10">THE CM MILLION PROJECT</span>
+            <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase text-blue-400 mb-6 border border-blue-400/30 rounded-full px-4 py-1.5 bg-blue-400/10">Emerging Entrepreneurs & Enterprises (CM E3™)</span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6 leading-tight">
               1,000,000 Entrepreneurs.<br /><span className="text-blue-400">1,000,000 Opportunities.</span>
             </h1>
@@ -93,7 +201,7 @@ export default function MillionProjectPage() {
           <motion.div {...fu}>
             <Tag variant="dark" className="mb-6">Why It Exists</Tag>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-dark tracking-tight mb-6 leading-snug">Sri Lanka Has No Shortage of Ambitious People or opportunities</h2>
-            <p className="text-neutral-600 text-lg leading-relaxed mb-4">What is often missing is the opportunity to take that first step. The Million Project was created to change that  identifying and supporting entrepreneurs across Sri Lanka who have the ambition to build businesses, solve real-world problems, create employment, and make a positive impact.</p>
+            <p className="text-neutral-600 text-lg leading-relaxed mb-4">What is often missing is the opportunity to take that first step. The Million Project CM E3™ was created to change that  identifying and supporting entrepreneurs across Sri Lanka who have the ambition to build businesses, solve real-world problems, create employment, and make a positive impact.</p>
             <p className="text-neutral-600 text-lg leading-relaxed">We believe opportunity should not belong only to those who already have capital, connections, or credentials.</p>
           </motion.div>
           <motion.div {...fu} transition={{duration:0.7,delay:0.15,ease:"easeOut"}}>
@@ -181,7 +289,7 @@ export default function MillionProjectPage() {
                 <span className="text-amber-400 text-sm font-bold uppercase tracking-wider">Important Notice</span>
               </div>
               <p className="text-neutral-300 text-base leading-relaxed">
-                The Million Project is <strong className="text-white">not a grant programme</strong> and submission does not guarantee funding. Selected investments are subject to project evaluation, due diligence, investment approval, documentation, and agreed investment terms.
+                The Million Project CM E3™ is <strong className="text-white">not a grant programme</strong> and submission does not guarantee funding. Selected investments are subject to project evaluation, due diligence, investment approval, documentation, and agreed investment terms.
               </p>
             </motion.div>
           </div>
@@ -193,7 +301,7 @@ export default function MillionProjectPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div {...fu} className="text-center mb-16">
             <Tag variant="dark" className="mb-6 mx-auto">The Standard</Tag>
-            <h2 className="text-3xl md:text-5xl font-bold text-navy-dark tracking-tight mb-4">What Makes a Million Project?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-navy-dark tracking-tight mb-4">What Makes a Million Project CM E3™?</h2>
             <p className="text-neutral-600 text-lg max-w-xl mx-auto">The businesses we back are defined by the value they create  ” not just the profit they generate.</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -235,7 +343,7 @@ export default function MillionProjectPage() {
             <Tag variant="dark" className="mb-6">More Than Money</Tag>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-dark tracking-tight mb-6 leading-snug">Capital is only the beginning.</h2>
             <p className="text-neutral-600 text-lg leading-relaxed">
-              Every entrepreneur faces questions beyond funding. Million Project entrepreneurs may gain access to CM Investments&apos; wider network  ” introductions, strategic guidance, business development support, and future investment opportunities.
+              Every entrepreneur faces questions beyond funding. Million Project CM E3™ entrepreneurs may gain access to CM Investments&apos; wider network  ” introductions, strategic guidance, business development support, and future investment opportunities.
             </p>
           </motion.div>
           <motion.div {...fu} transition={{duration:0.7,delay:0.15,ease:"easeOut"}}>
@@ -269,9 +377,9 @@ export default function MillionProjectPage() {
           </motion.div>
           <div className="space-y-6 text-left mb-12">
             {[
-              "Imagine one entrepreneur creating five jobs. Then another creating ten. Another developing an export product, reaching international markets. Another solving a healthcare problem that affects a rural community.",
-              "Each business creating value. Each entrepreneur inspiring others. Each investment building towards something larger than itself.",
-              "The ultimate ambition of the Million Project is to support the creation and growth of one million entrepreneurial opportunities over the long term, with a long-term aspiration to help facilitate businesses capable of generating more than USD 1 billion in cumulative economic value."
+              <>Imagine one entrepreneur creating five jobs. Then another creating ten. Another developing an export product, reaching international markets. Another solving a healthcare problem that affects a rural community.</>,
+              <>Each business creating value. Each entrepreneur inspiring others. Each investment building towards something larger than itself.</>,
+              <>The ultimate ambition of the Million Project CM E3™ is to support the creation and growth of one million entrepreneurial opportunities over the long term, with a long-term aspiration to help facilitate businesses capable of generating more than USD 9 billion in cumulative economic value.</>
             ].map((p,i) => (
               <motion.p key={i} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,delay:i*0.12}} className="text-neutral-300 text-lg leading-relaxed">{p}</motion.p>
             ))}
@@ -309,17 +417,28 @@ export default function MillionProjectPage() {
             </ul>
             <div className="rounded-xl border border-amber-400/30 bg-amber-50 p-5">
               <p className="text-amber-800 text-sm leading-relaxed">
-                <strong>Investment involves risk. Returns are not guaranteed.</strong> Past performance does not predict future results. All investments are subject to individual evaluation and agreed terms.
+                <strong>We approach every opportunity as a partnership.</strong> evaluated carefully, with terms agreed together. As with any investment, risk is real and past performance doesn't guarantee future results, but our goal is always a relationship where both sides win.
               </p>
             </div>
           </motion.div>
           <motion.div {...fu} transition={{duration:0.7,delay:0.15,ease:"easeOut"}}>
             <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-neutral-100">
-              <h3 className="text-xl font-bold text-navy-dark mb-6">Become a Million Project Partner</h3>
+              <h3 className="text-xl font-bold text-navy-dark mb-6">Become a Million Project CM E3™ Partner & Investor</h3>
               {partnerStatus === "success" ? (
-                <div className="bg-green-50 text-green-700 p-6 rounded-xl border border-green-200">
-                  <h4 className="font-semibold mb-1">Thank you!</h4>
-                  <p className="text-sm">Our team will be in touch shortly.</p>
+                <div className="bg-green-50 text-green-700 p-8 rounded-2xl border border-green-200 text-center">
+                  <svg className="w-10 h-10 mx-auto mb-3 text-green-600" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <h4 className="font-bold text-lg mb-1">Thank you for reaching out!</h4>
+                  <p className="text-sm text-green-800 leading-relaxed">Your partner enquiry has been received. Our team will review the details and connect with you shortly.</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPartnerStatus("idle");
+                      setPartnerData(initialPartnerData);
+                    }}
+                    className="mt-5 text-xs font-bold text-navy-dark bg-white hover:bg-neutral-100 px-5 py-2.5 rounded-full border border-neutral-200 transition-colors shadow-sm"
+                  >
+                    Submit Another Enquiry
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={onPartnerSubmit} className="space-y-5">
@@ -338,19 +457,31 @@ export default function MillionProjectPage() {
                     <label htmlFor="p-investmentInterest" className={labelStyles}>Investment Interest *</label>
                     <select id="p-investmentInterest" name="investmentInterest" required value={partnerData.investmentInterest} onChange={onPartnerChange} className={inputStyles}>
                       <option value="" disabled>Select range</option>
-                      <option>Under LKR 1 Million</option>
-                      <option>LKR 1M  “ 10M</option>
-                      <option>LKR 10M  “ 50M</option>
-                      <option>LKR 50M+</option>
-                      <option>To be discussed</option>
+                      <option value="Under LKR 1 Million">Under LKR 1 Million</option>
+                      <option value="LKR 1M – 10M">LKR 1M – 10M</option>
+                      <option value="LKR 10M – 50M">LKR 10M – 50M</option>
+                      <option value="LKR 50M+">LKR 50M+</option>
+                      <option value="To be discussed">To be discussed</option>
                     </select>
                   </div>
                   <div>
                     <label htmlFor="p-message" className={labelStyles}>Message</label>
                     <textarea id="p-message" name="message" rows={4} value={partnerData.message} onChange={onPartnerChange} className={inputStyles} placeholder="Tell us more about your interest..." />
                   </div>
-                  {partnerStatus === "error" && <p className="text-red-500 text-sm">Something went wrong. Please email cm@pearlbay.com directly.</p>}
-                  <Button type="submit" variant="primary" size="md" className="w-full" disabled={partnerStatus === "loading"}>
+
+                  <div className="flex items-start gap-3 mt-4">
+                    <input required type="checkbox" id="partner-consent" className="mt-1 w-4 h-4 text-blue-600 bg-white border-neutral-300 rounded focus:ring-blue-500" />
+                    <label htmlFor="partner-consent" className="text-sm text-neutral-600 leading-relaxed text-left">
+                      I agree to the <a href="/termsandcon" target="_blank" className="text-blue-500 hover:underline">Terms & Conditions</a> and <a href="/privacypolicy" target="_blank" className="text-blue-500 hover:underline">Privacy & Confidentiality Notice</a>.
+                    </label>
+                  </div>
+
+                  {partnerStatus === "error" && (
+                    <div className="bg-red-50 text-red-600 text-sm p-3.5 rounded-xl border border-red-200">
+                      {partnerError || "Something went wrong. Please email cm@pearlbay.com directly."}
+                    </div>
+                  )}
+                  <Button type="submit" variant="primary" size="md" className="w-full mt-4" loading={partnerStatus === "loading"} disabled={partnerStatus === "loading"}>
                     {partnerStatus === "loading" ? "Submitting..." : "Become a Partner"}
                   </Button>
                 </form>
@@ -372,7 +503,17 @@ export default function MillionProjectPage() {
             <div className="bg-green-50 text-green-700 p-10 rounded-3xl border border-green-200 text-center">
               <svg className="w-12 h-12 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <h3 className="text-xl font-bold mb-2">Application Submitted!</h3>
-              <p>Our team will review your application and be in touch.</p>
+              <p className="text-green-800 leading-relaxed max-w-lg mx-auto">Thank you for submitting your project. Our team will review your application and be in touch soon.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setApplyStatus("idle");
+                  setApplyData(initialApplyData);
+                }}
+                className="mt-6 inline-flex items-center px-6 py-2.5 text-sm font-semibold text-green-900 bg-green-200/70 hover:bg-green-200 rounded-full transition-colors"
+              >
+                Submit another application
+              </button>
             </div>
           ) : (
             <form onSubmit={onApplySubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-neutral-100 space-y-10">
@@ -382,7 +523,7 @@ export default function MillionProjectPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div><label htmlFor="a-name" className={labelStyles}>Full Name *</label><input id="a-name" type="text" name="name" required value={applyData.name} onChange={onApplyChange} className={inputStyles} placeholder="Your full name" /></div>
                   <div><label htmlFor="a-age" className={labelStyles}>Age *</label><input id="a-age" type="number" name="age" required min="10" max="120" value={applyData.age} onChange={onApplyChange} className={inputStyles} placeholder="e.g. 28" /></div>
-                  <div><label htmlFor="a-district" className={labelStyles}>District *</label><select id="a-district" name="district" required value={applyData.district} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select district</option>{SL_DISTRICTS.map(d => <option key={d}>{d}</option>)}</select></div>
+                  <div><label htmlFor="a-district" className={labelStyles}>District *</label><select id="a-district" name="district" required value={applyData.district} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select district</option>{SL_DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}</select></div>
                   <div><label htmlFor="a-email" className={labelStyles}>Email *</label><input id="a-email" type="email" name="email" required value={applyData.email} onChange={onApplyChange} className={inputStyles} placeholder="you@example.com" /></div>
                   <div><label htmlFor="a-phone" className={labelStyles}>Phone *</label><input id="a-phone" type="tel" name="phone" required value={applyData.phone} onChange={onApplyChange} className={inputStyles} placeholder="+94 77 000 0000" /></div>
                   <div><label htmlFor="a-bg" className={labelStyles}>Professional Background</label><textarea id="a-bg" name="background" rows={3} value={applyData.background} onChange={onApplyChange} className={inputStyles} placeholder="Brief professional or educational background..." /></div>
@@ -393,8 +534,8 @@ export default function MillionProjectPage() {
                 <h3 className="text-sm font-bold text-navy-dark uppercase tracking-wider mb-6 pb-3 border-b border-neutral-100">2. Your Business</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div><label htmlFor="a-bn" className={labelStyles}>Business / Project Name *</label><input id="a-bn" type="text" name="businessName" required value={applyData.businessName} onChange={onApplyChange} className={inputStyles} placeholder="Name of your business or project" /></div>
-                  <div><label htmlFor="a-ind" className={labelStyles}>Industry / Sector *</label><select id="a-ind" name="industry" required value={applyData.industry} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select industry</option>{["Agriculture & Food","Education","Energy & Environment","Fashion","Financial Services","Healthcare","Hospitality & Tourism","Manufacturing","Media & Creative","Real Estate","Retail","Technology & Software","Transport & Logistics","Other"].map(v => <option key={v}>{v}</option>)}</select></div>
-                  <div className="md:col-span-2"><label htmlFor="a-stage" className={labelStyles}>Business Stage *</label><select id="a-stage" name="stage" required value={applyData.stage} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select stage</option><option value="Idea Stage">Idea Stage  ” I have an idea but have not started yet</option><option value="New Business">New Business  ” Early stages of operation</option><option value="Existing Business">Existing Business  ” Operating, looking to grow</option></select></div>
+                  <div><label htmlFor="a-ind" className={labelStyles}>Industry / Sector *</label><select id="a-ind" name="industry" required value={applyData.industry} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select industry</option>{["Agriculture & Food","Education","Energy & Environment","Fashion","Financial Services","Healthcare","Hospitality & Tourism","Manufacturing","Media & Creative","Real Estate","Retail","Technology & Software","Transport & Logistics","Other"].map(v => <option key={v} value={v}>{v}</option>)}</select></div>
+                  <div className="md:col-span-2"><label htmlFor="a-stage" className={labelStyles}>Business Stage *</label><select id="a-stage" name="stage" required value={applyData.stage} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select stage</option><option value="Idea Stage">Idea Stage – I have an idea but have not started yet</option><option value="New Business">New Business – Early stages of operation</option><option value="Existing Business">Existing Business – Operating, looking to grow</option></select></div>
                 </div>
               </div>
               {/* 3. Opportunity */}
@@ -406,7 +547,7 @@ export default function MillionProjectPage() {
                   <div><label htmlFor="a-cust" className={labelStyles}>Who are your customers? *</label><textarea id="a-cust" name="customers" required rows={2} value={applyData.customers} onChange={onApplyChange} className={inputStyles} placeholder="Who will buy your product or use your service?" /></div>
                   <div><label htmlFor="a-rev" className={labelStyles}>Revenue Model *</label><textarea id="a-rev" name="revenueModel" required rows={2} value={applyData.revenueModel} onChange={onApplyChange} className={inputStyles} placeholder="How will the business make money?" /></div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div><label htmlFor="a-fa" className={labelStyles}>Funding Required (LKR) *</label><select id="a-fa" name="fundingAmount" required value={applyData.fundingAmount} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select amount</option><option>Under LKR 250,000</option><option>LKR 250,000  “ 500,000</option><option>LKR 500,000  “ 750,000</option><option>LKR 750,000  “ 1,000,000</option></select></div>
+                    <div><label htmlFor="a-fa" className={labelStyles}>Funding Required (LKR) *</label><select id="a-fa" name="fundingAmount" required value={applyData.fundingAmount} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select amount</option><option value="Under LKR 250,000">Under LKR 250,000</option><option value="LKR 250,000 – 500,000">LKR 250,000 – 500,000</option><option value="LKR 500,000 – 750,000">LKR 500,000 – 750,000</option><option value="LKR 750,000 – 1,000,000">LKR 750,000 – 1,000,000</option></select></div>
                     <div><label htmlFor="a-diff" className={labelStyles}>What makes you different?</label><input id="a-diff" type="text" name="differentiation" value={applyData.differentiation} onChange={onApplyChange} className={inputStyles} placeholder="Key advantage or differentiation" /></div>
                   </div>
                   <div><label htmlFor="a-use" className={labelStyles}>How will you use the investment? *</label><textarea id="a-use" name="fundingUse" required rows={3} value={applyData.fundingUse} onChange={onApplyChange} className={inputStyles} placeholder="How the investment will be used and what it will achieve..." /></div>
@@ -416,7 +557,7 @@ export default function MillionProjectPage() {
               <div>
                 <h3 className="text-sm font-bold text-navy-dark uppercase tracking-wider mb-6 pb-3 border-b border-neutral-100">4. Your Impact</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div><label htmlFor="a-jobs" className={labelStyles}>Jobs it could create</label><input id="a-jobs" type="text" name="jobsCreated" value={applyData.jobsCreated} onChange={onApplyChange} className={inputStyles} placeholder="e.g. 5 “10 direct jobs in year 1" /></div>
+                  <div><label htmlFor="a-jobs" className={labelStyles}>Jobs it could create</label><input id="a-jobs" type="text" name="jobsCreated" value={applyData.jobsCreated} onChange={onApplyChange} className={inputStyles} placeholder="e.g. 5 – 10 direct jobs in year 1" /></div>
                   <div><label htmlFor="a-exp" className={labelStyles}>Export potential</label><input id="a-exp" type="text" name="exportPotential" value={applyData.exportPotential} onChange={onApplyChange} className={inputStyles} placeholder="e.g. Regional export within 3 years" /></div>
                   <div><label htmlFor="a-bsl" className={labelStyles}>Benefit to Sri Lanka</label><textarea id="a-bsl" name="benefitToSriLanka" rows={3} value={applyData.benefitToSriLanka} onChange={onApplyChange} className={inputStyles} placeholder="How does this benefit the Sri Lankan economy or society?" /></div>
                   <div><label htmlFor="a-soc" className={labelStyles}>Social / environmental angle</label><textarea id="a-soc" name="socialAngle" rows={3} value={applyData.socialAngle} onChange={onApplyChange} className={inputStyles} placeholder="Any social or environmental dimension?" /></div>
@@ -432,10 +573,30 @@ export default function MillionProjectPage() {
                   <span className="italic text-neutral-400">Document upload via this form is coming soon.</span>
                 </p>
               </div>
-              {applyStatus === "error" && <p className="text-red-500 text-sm">Something went wrong. Please email cm@pearlbay.com directly.</p>}
-              <div className="text-center">
-                <Button type="submit" variant="primary" size="lg" className="px-12" disabled={applyStatus === "loading"}>
-                  {applyStatus === "loading" ? "Submitting..." : "Submit My Project"}
+              
+              <div className="flex flex-col gap-3 mt-8">
+                <div className="flex items-start gap-3">
+                  <input required type="checkbox" id="auth-consent" className="mt-1 w-4 h-4 text-blue-600 bg-white border-neutral-300 rounded focus:ring-blue-500" />
+                  <label htmlFor="auth-consent" className="text-sm text-neutral-600 leading-relaxed">
+                    I confirm that I am authorised to submit this information and that it is accurate and genuine.
+                  </label>
+                </div>
+                <div className="flex items-start gap-3">
+                  <input required type="checkbox" id="share-consent" className="mt-1 w-4 h-4 text-blue-600 bg-white border-neutral-300 rounded focus:ring-blue-500" />
+                  <label htmlFor="share-consent" className="text-sm text-neutral-600 leading-relaxed">
+                    I authorise CM Investments to share relevant project information with selected investors/partners for the purpose of evaluating potential funding or investment.
+                  </label>
+                </div>
+              </div>
+
+              {applyStatus === "error" && (
+                <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-200 text-center">
+                  {applyError || "Something went wrong. Please email cm@pearlbay.com directly."}
+                </div>
+              )}
+              <div className="text-center mt-8">
+                <Button type="submit" variant="primary" size="lg" className="px-12" loading={applyStatus === "loading"} disabled={applyStatus === "loading"}>
+                  {applyStatus === "loading" ? "Submitting Application..." : "Submit My Project"}
                 </Button>
               </div>
             </form>
@@ -450,15 +611,14 @@ export default function MillionProjectPage() {
             <div className="text-center mb-10">
               <Tag variant="dark" className="mx-auto">A Message From Our Founder</Tag>
             </div>
-            {/* TODO: Replace imageSrc with an actual photo of Chathura Masinha */}
             <FounderCard
               name="Chathura Masinha"
               position="Founder & Principal, CM Investments (Pvt) Ltd."
-              imageSrc="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop"
-              imageAlt="Chathura Masinha  ” Founder, CM Investments"
+              imageSrc="/chathura-masinha.jpg"
+              imageAlt="Chathura Masinha – Founder, CM Investments"
               quote="Opportunity should not belong only to those who already have capital. As an entrepreneur myself, I understand that building a business involves uncertainty, setbacks, difficult decisions, and the constant challenge of finding resources to move forward. I don't expect every project to succeed. I do believe more people deserve the opportunity to try."
               biography={
-                <p>Chathura Masinha is the Founder and Principal of CM Investments (Pvt) Ltd., connecting global capital with transformational opportunities across Sri Lanka and international markets. The CM Million Project is his flagship entrepreneurial initiative.</p>
+                <p>Chathura Masinha is the Founder and Principal of CM Investments (Pvt) Ltd., connecting global capital with transformational opportunities across Sri Lanka and international markets. The CM Million Project CM E3™ is his flagship entrepreneurial initiative.</p>
               }
               linkedInUrl="mailto:cm@pearlbay.com"
             />
@@ -474,7 +634,7 @@ export default function MillionProjectPage() {
             <div className="relative z-10 flex flex-col items-center max-w-3xl mx-auto">
               <span className="text-xs font-bold tracking-[0.25em] uppercase text-blue-400 mb-4 border border-blue-400/30 rounded-full px-4 py-1.5 bg-blue-400/10">1 Million Entrepreneurs. 1 Million Opportunities.</span>
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">Ready to Be Part of the Movement?</h2>
-              <p className="text-lg text-neutral-300 mb-10 leading-relaxed max-w-2xl">Whether you have an idea to fund, capital to invest, or a business to back  ” the Million Project starts here.</p>
+              <p className="text-lg text-neutral-300 mb-10 leading-relaxed max-w-2xl">Whether you have an idea to fund, capital to invest, or a business to back — the Million Project CM E3™ starts here.</p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
                 <Button variant="secondary" size="lg" href="#apply">Apply for Funding</Button>
                 <Button variant="primary" size="lg" href="#partner">Partner With Us</Button>

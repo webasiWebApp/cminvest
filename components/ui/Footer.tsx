@@ -27,7 +27,7 @@ export const Footer = () => {
             <div className="flex flex-col space-y-2 pt-2">
               <a href="mailto:cm@pearlbay.com" className="inline-flex items-center space-x-2 text-neutral-300 hover:text-white transition-colors text-sm">
                 <Mail className="w-4 h-4 text-navy-light" />
-                <span>cm@pearlbay.com</span>
+                <span>hello@cminvest.com</span>
               </a>
             </div>
             <div className="flex space-x-4 pt-1">
@@ -86,10 +86,11 @@ export const Footer = () => {
           className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500"
         >
           <p>© {new Date().getFullYear()} CM Investments (Pvt) Ltd. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="#" className="hover:text-white transition-colors">Legal</Link>
+          <div className="flex space-x-6 flex-wrap justify-end gap-y-2">
+            <Link href="/privacypolicy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/termsandcon" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/cookiespolicy" className="hover:text-white transition-colors">Cookie Policy</Link>
+            <Link href="/websitedesclamer" className="hover:text-white transition-colors">Website Disclaimer</Link>
           </div>
         </motion.div>
       </div>

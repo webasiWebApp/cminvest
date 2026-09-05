@@ -68,9 +68,9 @@ export default function Home() {
             
             {/* Stats Left */}
             <div className="flex flex-wrap gap-8 md:gap-12 items-center">
-              <StatCounter value={18} prefix="$" suffix="B+" label="Energy Transactions" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
+              <StatCounter value={20} prefix="$" suffix="B+" label="Energy Transactions" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
               <StatCounter value={100} suffix="%" label="Sustainable Impact" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
-              <StatCounter value={15} prefix="+" label="Sectors Covered" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
+              <StatCounter value={9} suffix="+" label="Sectors Covered" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
               <StatCounter value={5} prefix="" suffix="+" label="Global Markets" className="[&_div]:text-white [&_div]:text-3xl md:[&_div]:text-4xl [&_div]:font-medium [&>span]:text-neutral-400 [&>span]:text-xs [&>span]:normal-case [&>span]:capitalize" />
             </div>
 
@@ -84,12 +84,34 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* SECTION 2: Scroll Paragraph Section */}
+      {/* SECTION 2: About & Founder Section */}
       <section id="about" className="py-24 md:py-40 px-6 md:px-12 bg-white relative">
-        <LargeParagraph 
-          text="CM Investments (Pvt) Ltd. is a Sri Lankan investment, advisory, and project development company committed to creating sustainable economic growth through strategic investments, international partnerships, and responsible business practices."
-          highlightWords={["sustainable", "economic", "growth", "strategic", "investments,", "international", "partnerships,"]}
-        />
+        <div className="max-w-5xl mx-auto text-center">
+          <Tag variant="outline" className="mb-6 mx-auto">About CM Investments</Tag>
+          
+          <div className="hidden md:block">
+            <LargeParagraph 
+              text="CM Investments is the business expression of Chathura’s personal vision - shaped by his own experience as a project owner, entrepreneur, investor, fundraiser and international network builder. <br/> Having experienced first-hand the challenges of finding funding, building credible partnerships and turning ideas into real projects, Chathura believes that good opportunities should be accessible to the right people - and capital should be connected with genuine, realistic opportunities."
+              highlightWords={["personal", "vision", "project", "owner,", "entrepreneur,", "investor,", "fundraiser", "accessible", "capital", "genuine,", "realistic", "opportunities."]}
+            />
+          </div>
+          <div className="md:hidden">
+            <h2 className="text-3xl font-bold text-navy-dark leading-tight mb-12">
+              CM Investments is the business expression of Chathura’s personal vision shaped by his own experience as a project owner, entrepreneur, investor, fundraiser and international network builder.
+            </h2>
+           
+          </div>
+          <div className="md:hidden">
+           <p className="text-lg text-neutral-600 font-medium">
+              Having experienced first-hand the challenges of finding funding, building credible partnerships and turning ideas into real projects,<br /><br />Chathura believes that good opportunities should be accessible to the right people and capital should be connected with genuine, realistic opportunities.
+            </p>
+          </div>
+          <div className="mt-16 md:mt-24">
+            <h3 className="text-xl md:text-2xl font-bold text-navy-dark tracking-wide uppercase">Chathura Masinha</h3>
+            <p className="text-[#3b82f6] font-semibold tracking-widest text-sm mt-2 uppercase">Founder & Visionary - CM Investments</p>
+            <div className="w-12 h-1 bg-navy-light mx-auto mt-6" />
+          </div>
+        </div>
       </section>
 
       {/* SECTION 3: Giant Background Word */}
@@ -97,7 +119,7 @@ export default function Home() {
         <BackgroundWord text="INVESTMENT" />
       </div>
 
-      {/* SECTION 4: A Global Investment & Advisory Firm — Hero-style full-bleed layout */}
+      {/* SECTION 4: A Global Investment & Advisory Firm - Hero-style full-bleed layout */}
       <section className="bg-white pt-20 md:pt-28 mt-48 overflow-hidden">
         {/* Text Content */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 pb-14 md:pb-20">
@@ -136,7 +158,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 5: International Market Reach — Hero-style full-bleed layout */}
+      {/* SECTION 5: International Market Reach - Hero-style full-bleed layout */}
       <section className="bg-white pt-20 md:pt-28 mt-32 overflow-hidden">
         {/* Text Content */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 pb-14 md:pb-20">
@@ -172,6 +194,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION 5.5: Why Invest in Sri Lanka */}
+      <section className="bg-slate-50 py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-16">
+            <Tag variant="dark" className="mb-6">FOR INTERNATIONAL INVESTORS</Tag>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy-dark tracking-tight mb-6 leading-[1.1]">
+              Why Invest in Sri Lanka?
+            </h2>
+            <p className="text-xl text-[#3b82f6] font-semibold mb-6">
+              A Strategic Gateway to South Asia
+            </p>
+            <p className="text-neutral-600 text-lg leading-relaxed mb-8">
+              Sri Lanka offers a unique combination of strategic location, regional market access, skilled talent, investment incentives and emerging-sector opportunity. CM Investments helps international investors go beyond identifying opportunities - evaluating projects, finding local partners, and navigating the path from decision to implementation.
+            </p>
+            <Button variant="primary" size="md" href="/why-invest-sri-lanka" className="px-8 py-4 rounded-full">
+              Explore Why Sri Lanka
+            </Button>
+          </div>
+
+          {/* Highlight Row (Chips) */}
+          <div className="flex flex-wrap gap-3 mb-16">
+            {[
+              "Strategic Indian Ocean Location",
+              "100% Repatriation of Capital & Profits*",
+              "DTAAs with 45 Countries",
+              "100% Foreign Ownership in Many Sectors",
+              "~92% Literacy Rate",
+              "Tax Incentives - Subject to Project Eligibility"
+            ].map((chip, idx) => (
+              <div key={idx} className="px-5 py-2.5 bg-white rounded-full border border-neutral-200 text-sm font-bold text-navy-dark shadow-sm">
+                {chip}
+              </div>
+            ))}
+          </div>
+
+          {/* Large Visual Callout */}
+          <div className="bg-white border-l-4 border-[#3b82f6] p-8 md:p-12 shadow-sm rounded-r-2xl max-w-4xl mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-navy-dark mb-4">
+              100% Repatriation of Capital & Profits*
+            </h3>
+            <p className="text-neutral-500 text-base italic">
+              *For qualifying investments, subject to applicable laws, regulations and investment conditions.
+            </p>
+          </div>
+          
+          {/* Fine-print line */}
+          <p className="text-xs text-neutral-400 max-w-4xl leading-relaxed">
+            *Figures above are general and depend on investment structure, sector and applicable regulations. We recommend independent legal, tax and foreign-exchange advice for any investment.
+          </p>
+        </div>
+      </section>
+
       {/* SECTION 6: Giant Background Word */}
       <div className="relative h-[50vh] md:h-[50vh] overflow-hidden mt-10 flex items-center justify-center">
         <BackgroundWord text="ADVISORY" />
@@ -196,7 +270,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
 
             {/* Card 1 – INVEST */}
-            <div className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/25 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-navy/40">
+            <div id="invest" className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/25 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-navy/40 scroll-mt-28">
               {/* Top accent bar */}
               <div className="h-1 w-full bg-gradient-to-r from-navy via-navy-light to-blue-400" />
               <div className="flex flex-col flex-1 p-10 md:p-12">
@@ -231,7 +305,7 @@ export default function Home() {
             </div>
 
             {/* Card 2 – GET FUNDING */}
-            <div className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm hover:border-amber-400/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-amber-900/30">
+            <div id="funding" className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm hover:border-amber-400/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-amber-900/30 scroll-mt-28">
               {/* Top accent bar */}
               <div className="h-1 w-full bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-300" />
               <div className="flex flex-col flex-1 p-10 md:p-12">
@@ -288,13 +362,13 @@ export default function Home() {
             >
               <Tag variant="dark" className="mb-6">Flagship Initiative</Tag>
               <h2 className="text-3xl md:text-5xl font-bold text-navy-dark tracking-tight mb-4 leading-snug">
-                The CM Million Project
+                The CM Million Project CM E3™
               </h2>
               <p className="text-navy-dark/70 text-lg font-semibold mb-4 italic">
                 1 Million Entrepreneurs. 1 Million Opportunities.
               </p>
               <p className="text-neutral-700 text-lg leading-relaxed mb-8">
-                CM Investments intends to invest up to LKR 1 million in selected Sri Lankan entrepreneurs — no matter their age, location, or background — to turn good ideas into real businesses.
+                CM Investments intends to invest up to LKR 1 million in selected Sri Lankan entrepreneurs - no matter their age, location, or background - to turn good ideas into real businesses.
               </p>
               {/* Stat chips */}
               <div className="flex flex-wrap gap-3 mb-10">
@@ -311,7 +385,7 @@ export default function Home() {
                 ))}
               </div>
               <Button variant="primary" size="lg" href="/million-project" className="rounded-full">
-                Learn More About the Million Project
+                Learn More About the Million Project CM E3™
               </Button>
             </motion.div>
             {/* Right: feature highlights */}
@@ -328,7 +402,7 @@ export default function Home() {
                   { icon: "💡", title: "Idea-stage founders", desc: "You have a problem worth solving and the ambition to build." },
                   { icon: "🏗️", title: "Early-stage businesses", desc: "You need capital to take the next step in your growth." },
                   { icon: "🌱", title: "Impact entrepreneurs", desc: "Your business creates jobs, solves problems, or protects the environment." },
-                  { icon: "🌏", title: "Sri Lankan entrepreneurs", desc: "Any age, any district — Colombo to Vavuniya, 18 to 80." },
+                  { icon: "🌏", title: "Sri Lankan entrepreneurs", desc: "Any age, any district - Colombo to Vavuniya, 18 to 80." },
                 ].map((item) => (
                   <div key={item.title} className="flex gap-4 items-start">
                     <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>
@@ -417,9 +491,9 @@ export default function Home() {
             />
             <IndustryCard 
               number="05"
-              title="Financial Services"
-              description="Capital markets, asset management, private equity placement, banking advisory, and institutional wealth structuring."
-              tags={["Capital Markets", "Asset Management", "Banking"]}
+              title="Entertainment"
+              description=" Supporting media, music and broadcasting ventures that shape culture and connect Sri Lankan talent with global audiences."
+              tags={["Music Industry","Broadcasting"]}
               imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
               imageAlt="Financial Services Sector"
               onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Financial%20Services%20Inquiry'}
@@ -440,8 +514,25 @@ export default function Home() {
               tags={["Strategic Advisory", "Corporate M&A", "Consulting"]}
               imageSrc="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
               imageAlt="Professional Services and Consulting Sector"
-              className="md:col-span-2 lg:col-span-1"
               onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Consulting%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="08"
+              title="Hospitality & Tourism"
+              description="Luxury resorts, eco-tourism projects, boutique hotels, and strategic hospitality developments across prime destinations."
+              tags={["Resorts", "Eco-Tourism", "Leisure"]}
+              imageSrc="https://images.unsplash.com/photo-1542314831-c6a4d14d837e?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Hospitality and Tourism Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Hospitality%20Sector%20Inquiry'}
+            />
+            <IndustryCard 
+              number="09"
+              title="Agriculture & Agri-Tech"
+              description="Sustainable farming, precision agriculture, food security initiatives, and value-added export crop production."
+              tags={["Agri-Tech", "Sustainability", "Export"]}
+              imageSrc="https://images.unsplash.com/photo-1592982537447-6f2a6a0c5989?q=80&w=800&auto=format&fit=crop"
+              imageAlt="Agriculture Sector"
+              onExplore={() => window.location.href = 'mailto:cm@pearlbay.com?subject=Agriculture%20Sector%20Inquiry'}
             />
           </div>
 
@@ -479,26 +570,29 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24 max-w-5xl mx-auto mt-12">
-            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Bussa" className="flex flex-col items-center gap-5 group">
-              <div className="w-32 h-32 md:w-48 md:h-48 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 max-w-6xl mx-auto mt-12">
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Bussa" className="flex flex-col items-center gap-5 group" title="Bussa">
+              <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/bussa.jpg" alt="Bussa" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
-      
             </a>
             
-            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Pearlbay" className="flex flex-col items-center gap-5 group">
-              <div className="w-32 h-32 md:w-48 md:h-48 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Pearlbay" className="flex flex-col items-center gap-5 group" title="Pearlbay">
+              <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/pearlbay.png" alt="Pearlbay" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
-            
             </a>
             
-            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Turu" className="flex flex-col items-center gap-5 group">
-              <div className="w-32 h-32 md:w-48 md:h-48 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Turu" className="flex flex-col items-center gap-5 group" title="Turu">
+              <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/turu.png" alt="Turu" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
-             
+            </a>
+
+            <a href="mailto:cm@pearlbay.com?subject=Inquiry%20regarding%20Nulife%20Biotech" className="flex flex-col items-center gap-5 group" title="Nulife Biotech">
+              <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
+                <img src="/company logos/nulife.jpeg" alt="Nulife Biotech" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
+              </div>
             </a>
           </div>
           
@@ -531,7 +625,7 @@ export default function Home() {
                 Chathura Masinha established CM Investments with a long-term vision of positioning Sri Lanka as a preferred destination for responsible international investment.
               </p>
               <p>
-                His experience spans international commercial negotiations, investment structuring, project development, commodity trading, strategic partnerships, and cross-border business expansion. He has contributed to the development of high-value commercial relationships and participated in strategic discussions involving energy transactions valued in excess of USD 120 billion, demonstrating the firm&apos;s ability to engage with major international stakeholders.
+                His experience spans international commercial negotiations, investment structuring, project development, commodity trading, strategic partnerships, and cross-border business expansion. <br /> He has contributed to the development of high-value commercial relationships and participated in strategic discussions involving energy transactions valued in excess of USD 100 billion over 5 years, demonstrating the firm&apos;s ability to engage with major international stakeholders.
               </p>
             </>
           }

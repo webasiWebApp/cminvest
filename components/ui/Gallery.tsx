@@ -11,8 +11,6 @@ export interface GalleryItem {
   src: string;
   alt: string;
   title: string;
-  category: string;
-  location: string;
   aspect?: "tall" | "wide" | "square";
 }
 
@@ -21,56 +19,42 @@ const galleryItems: GalleryItem[] = [
     src: "/Gallary/WhatsApp Image 2026-08-16 at 20.44.55.jpeg",
     alt: "International Diplomatic & High-Level Delegation",
     title: "International Diplomatic Delegation",
-    category: "Diplomatic & Government",
-    location: "Global Summit",
     aspect: "wide",
   },
   {
     src: "/Gallary/IMG_7876.jpeg",
     alt: "Strategic Partnership Meeting in Tokyo",
     title: "Strategic Enterprise Dialogue",
-    category: "International Business",
-    location: "Tokyo, Japan",
     aspect: "tall",
   },
   {
     src: "/Gallary/WhatsApp Image 2026-08-16 at 20.44.55 (1).jpeg",
     alt: "Executive Investor & Strategic Discussion",
     title: "Executive Strategic Discussion",
-    category: "Capital & Advisory",
-    location: "London, UK",
     aspect: "wide",
   },
   {
     src: "/Gallary/dc44166d-6146-4a3b-bff0-c9f63a63f2bb.JPG",
     alt: "Global Market Operations & Field Visit",
     title: "Commercial Hub Engagement",
-    category: "Market Expansion",
-    location: "Tokyo, Japan",
     aspect: "tall",
   },
   {
     src: "/Gallary/WhatsApp Image 2026-08-16 at 20.44.56 (1).jpeg",
     alt: "Industrial & Manufacturing Site Collaboration",
     title: "Industrial & Infrastructure Review",
-    category: "Project Development",
-    location: "International Facility",
     aspect: "wide",
   },
   {
     src: "/Gallary/WhatsApp Image 2026-08-16 at 20.44.56.jpeg",
     alt: "International Trade & Commercial Innovation Showcase",
     title: "Global Commercial Innovation",
-    category: "Trade & Partnerships",
-    location: "Trade Exhibition",
     aspect: "wide",
   },
   {
     src: "/Gallary/f5635cd5-3151-4317-be7d-f8f9d2be991b.JPG",
     alt: "Executive Partner Dinner and Cultural Exchange",
     title: "Partner Relations & Networking",
-    category: "Strategic Alliances",
-    location: "Tokyo, Japan",
     aspect: "wide",
   },
 ];
@@ -149,10 +133,7 @@ export const Gallery = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
               {/* Top Tag & Zoom icon */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-white/90 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                  {item.category}
-                </span>
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-end z-10">
                 <div className="w-9 h-9 rounded-full bg-white/10 group-hover:bg-[#3B82F6] backdrop-blur-md flex items-center justify-center text-white transition-colors duration-300">
                   <Maximize2 className="w-4 h-4" />
                 </div>
@@ -160,9 +141,6 @@ export const Gallery = () => {
 
               {/* Bottom Caption Info */}
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
-                <span className="text-xs font-mono text-blue-400 font-medium tracking-wider block mb-1">
-                  📍 {item.location}
-                </span>
                 <h3 className="text-lg md:text-xl font-bold text-white tracking-tight group-hover:text-blue-300 transition-colors">
                   {item.title}
                 </h3>
@@ -234,9 +212,6 @@ export const Gallery = () => {
                   <h4 className="text-white text-lg font-bold">
                     {galleryItems[selectedIndex].title}
                   </h4>
-                  <p className="text-neutral-400 text-sm">
-                    {galleryItems[selectedIndex].category} • {galleryItems[selectedIndex].location}
-                  </p>
                 </div>
                 <span className="text-xs font-mono text-neutral-400 mt-2 md:mt-0">
                   {selectedIndex + 1} / {galleryItems.length}
@@ -249,3 +224,4 @@ export const Gallery = () => {
     </section>
   );
 };
+

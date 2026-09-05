@@ -14,7 +14,6 @@ const navLinks = [
   { name: "Services", href: "#services" },
   { name: "Industries", href: "#industries" },
   { name: "Portfolio", href: "#portfolio" },
-  { name: "Gallery", href: "#gallery" },
   { name: "Million Project", href: "/million-project" },
 ];
 
@@ -70,7 +69,8 @@ export const Navigation = () => {
   // Pre-set active link based on current route
   const [activeLink, setActiveLink] = useState(() =>
     pathname?.startsWith("/service") ? "Services" :
-    pathname?.startsWith("/million-project") ? "Million Project" : "Home"
+    pathname?.startsWith("/million-project") ? "Million Project" :
+    pathname?.startsWith("/csr") ? "CSR" : "Home"
   );
   const { scrollY } = useScroll();
 
@@ -80,6 +80,8 @@ export const Navigation = () => {
       setActiveLink("Services");
     } else if (pathname?.startsWith("/million-project")) {
       setActiveLink("Million Project");
+    } else if (pathname?.startsWith("/csr")) {
+      setActiveLink("CSR");
     }
   }, [pathname]);
 
@@ -161,7 +163,7 @@ export const Navigation = () => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               {navLinks.map((link) => (
                 <NavLink
@@ -177,8 +179,26 @@ export const Navigation = () => {
             </div>
             
             <Button variant="primary" size="sm" href="mailto:cm@pearlbay.com">
-              Contact Us
+               Say Hello
             </Button>
+
+            {/* CSR Round Button */}
+            <Link
+              href="/csr"
+              aria-label="Corporate social responsibility"
+              className={cn(
+                "w-11 h-11 min-w-[44px] min-h-[44px] rounded-full inline-flex items-center justify-center text-xs font-bold tracking-wider uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                pathname === "/csr"
+                  ? isScrolled
+                    ? "bg-navy-dark text-white border border-navy-dark"
+                    : "bg-white text-navy-dark border border-white"
+                  : isScrolled
+                    ? "border border-navy-dark/20 text-navy-dark hover:bg-navy-dark hover:text-white focus-visible:ring-navy-light"
+                    : "border border-white/40 text-white hover:bg-white/15 hover:border-white focus-visible:ring-white"
+              )}
+            >
+              CSR
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -239,11 +259,29 @@ export const Navigation = () => {
                     {link.name}
                   </Link>
                 ))}
+
+                <Link
+                  href="/csr"
+                  onClick={() => {
+                    setActiveLink("CSR");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  aria-label="Corporate social responsibility"
+                  className={cn(
+                    "text-2xl font-medium transition-colors flex items-center justify-between",
+                    pathname === "/csr" ? "text-navy-dark font-bold" : "text-neutral-400 hover:text-navy-light"
+                  )}
+                >
+                  <span>CSR</span>
+                  <span className="text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-navy-dark/20 text-navy-dark font-semibold">
+                    Initiatives
+                  </span>
+                </Link>
               </div>
 
               <div className="mt-auto pt-8 border-t border-neutral-100">
                 <Button variant="primary" size="md" className="w-full" href="mailto:cm@pearlbay.com" onClick={() => setIsMobileMenuOpen(false)}>
-                  Contact Us
+                   Say Hello
                 </Button>
               </div>
             </motion.div>

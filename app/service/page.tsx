@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Suspense } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Navigation } from "@/components/ui/Navigation";
 import { ExpertiseCard } from "@/components/ui/ExpertiseCard";
@@ -236,7 +237,7 @@ function ServiceContent() {
         <div className="relative max-w-7xl mx-auto text-center">
           {/* Tab switcher */}
           <div className="inline-flex items-center gap-2 mb-8 bg-white/5 border border-white/10 rounded-full p-1.5">
-            <a
+            <Link
               href="/service?type=invest"
               className={`px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-200 ${
                 type === "invest"
@@ -245,8 +246,8 @@ function ServiceContent() {
               }`}
             >
               Invest
-            </a>
-            <a
+            </Link>
+            <Link
               href="/service?type=funding"
               className={`px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-200 ${
                 type === "funding"
@@ -255,7 +256,7 @@ function ServiceContent() {
               }`}
             >
               Get Funding
-            </a>
+            </Link>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight">

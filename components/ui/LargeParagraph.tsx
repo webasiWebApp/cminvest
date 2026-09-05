@@ -65,6 +65,10 @@ export const LargeParagraph = ({
           const start = i / words.length;
           const end = start + 1 / words.length;
           
+          if (word === "<br/>") {
+            return <div key={i} className="w-full h-8 md:h-12" />;
+          }
+
           const cleanWord = word.replace(/[.,!?]/g, "");
           const isHighlight = highlightWords.includes(cleanWord);
 

@@ -179,7 +179,6 @@ export function InvestmentForm() {
             </div>
           </div>
 
-          {/* Description */}
           <div className="mb-8">
             <label htmlFor="description" className={labelStyles}>Project / Investment Description *</label>
             <textarea
@@ -192,6 +191,13 @@ export function InvestmentForm() {
               className={inputStyles}
               placeholder="Please provide a brief description of your interest..."
             />
+          </div>
+
+          <div className="flex items-start gap-3 mb-8">
+            <input required type="checkbox" id="contact-consent" className="mt-1 w-4 h-4 text-blue-600 bg-slate-50 border-neutral-300 rounded focus:ring-blue-500" />
+            <label htmlFor="contact-consent" className="text-sm text-neutral-600 leading-relaxed text-left">
+              I agree to the <a href="/termsandcon" target="_blank" className="text-blue-500 hover:underline">Terms & Conditions</a> and <a href="/privacypolicy" target="_blank" className="text-blue-500 hover:underline">Privacy & Confidentiality Notice</a>.
+            </label>
           </div>
 
           <div className="text-center">

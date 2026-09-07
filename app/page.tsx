@@ -115,12 +115,12 @@ export default function Home() {
       </section>
 
       {/* SECTION 3: Giant Background Word */}
-      <div className="relative h-40 md:h-64 overflow-hidden my-32 bg-white">
+      <div className="hidden md:block relative h-40 md:h-64 overflow-hidden my-32 bg-white">
         <BackgroundWord text="INVESTMENT" />
       </div>
 
       {/* SECTION 4: A Global Investment & Advisory Firm - Hero-style full-bleed layout */}
-      <section className="bg-white pt-20 md:pt-28 mt-48 overflow-hidden">
+      <section className="bg-white pt-20 md:pt-28 mt-12 md:mt-48 overflow-hidden">
         {/* Text Content */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 pb-14 md:pb-20">
           <div className="max-w-2xl">
@@ -247,12 +247,12 @@ export default function Home() {
       </section>
 
       {/* SECTION 6: Giant Background Word */}
-      <div className="relative h-[50vh] md:h-[50vh] overflow-hidden mt-10 flex items-center justify-center">
+      <div className="hidden md:flex relative h-[50vh] md:h-[50vh] overflow-hidden mt-10 items-center justify-center">
         <BackgroundWord text="ADVISORY" />
       </div>
 
       {/* SECTION 7: Invest & Funding Hub */}
-      <section id="services" className="py-24 md:py-32 px-6 md:px-12 bg-navy-dark relative mt-32 pt-36 pb-32 z-10">
+      <section id="services" className="py-24 md:py-32 px-6 md:px-12 bg-navy-dark relative mt-12 md:mt-32 pt-36 pb-32 z-10">
         <div className="max-w-7xl mx-auto">
 
           {/* Section label */}
@@ -425,7 +425,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 9: Giant Background Word */}
-      <div className="relative h-[40vh] overflow-hidden my-20 flex items-center justify-center bg-white">
+      <div className="hidden md:flex relative h-[40vh] overflow-hidden my-20 items-center justify-center bg-white">
         <BackgroundWord text="INDUSTRIES" />
       </div>
 

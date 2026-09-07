@@ -126,30 +126,14 @@ export default function FloatingButtons() {
             >
               <Link
                 href={btn.href}
+                aria-label={btn.label}
+                title={btn.label}
                 onClick={(e) => handleNavClick(e, btn.href)}
+                className="relative overflow-hidden flex items-center justify-center gap-0 md:gap-2 px-3 py-3 md:pl-[14px] md:pr-[20px] md:py-[13px] rounded-r-full text-white no-underline text-[11.5px] font-bold tracking-[0.12em] cursor-pointer select-none whitespace-nowrap transition-[background,box-shadow] duration-300 ease-out"
                 style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  paddingLeft: "14px",
-                  paddingRight: "20px",
-                  paddingTop: "13px",
-                  paddingBottom: "13px",
-                  borderRadius: "0 50px 50px 0",
                   background: isHovered ? btn.bgHover : btn.bg,
                   boxShadow: isHovered ? btn.shadowHover : btn.shadow,
-                  color: "#ffffff",
-                  textDecoration: "none",
                   fontFamily: "var(--font-geist-sans), Inter, system-ui, sans-serif",
-                  fontSize: "11.5px",
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  cursor: "pointer",
-                  userSelect: "none",
-                  whiteSpace: "nowrap",
-                  transition: "background 0.3s ease, box-shadow 0.3s ease",
                 }}
               >
                 {/* Shine sweep */}
@@ -175,8 +159,9 @@ export default function FloatingButtons() {
                   )}
                 </AnimatePresence>
 
-                {/* Left accent bar */}
+                {/* Left accent bar (desktop only) */}
                 <motion.span
+                  className="hidden md:block"
                   animate={{ height: isHovered ? 22 : 18 }}
                   transition={{ duration: 0.2 }}
                   style={{
@@ -184,21 +169,20 @@ export default function FloatingButtons() {
                     borderRadius: "2px",
                     background: "rgba(255,255,255,0.55)",
                     flexShrink: 0,
-                    display: "block",
                   }}
                 />
 
                 {/* Icon */}
-                <span style={{ display: "flex", alignItems: "center", opacity: 0.9 }}>
+                <span className="flex items-center justify-center opacity-90 shrink-0">
                   {btn.icon}
                 </span>
 
-                {/* Label */}
-                <span>{btn.label}</span>
+                {/* Label (desktop only) */}
+                <span className="hidden md:inline">{btn.label}</span>
               </Link>
             </motion.div>
 
-            {/* Tooltip */}
+            {/* Tooltip (desktop only) */}
             <AnimatePresence>
               {isHovered && (
                 <motion.div
@@ -207,6 +191,7 @@ export default function FloatingButtons() {
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: -6, scale: 0.94 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="hidden md:block pointer-events-none"
                   style={{
                     position: "absolute",
                     left: "calc(100% + 14px)",
@@ -222,7 +207,6 @@ export default function FloatingButtons() {
                     borderRadius: "8px",
                     whiteSpace: "nowrap",
                     boxShadow: "0 6px 24px rgba(0,0,0,0.22)",
-                    pointerEvents: "none",
                     zIndex: 10000,
                   }}
                 >

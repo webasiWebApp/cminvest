@@ -23,7 +23,7 @@ export const BackgroundWord = ({
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center">
+    <div className="hidden md:flex absolute inset-0 overflow-hidden pointer-events-none z-0 items-center">
       <div
         className={cn(
           "absolute font-bold uppercase whitespace-nowrap select-none",

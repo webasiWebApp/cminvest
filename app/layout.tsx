@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CM Investments (Pvt) Ltd. | Sustainable Investments & Strategic Advisory",
   description: "Sri Lankan investment advisory, project development, and international business consulting firm connecting global capital with transformational opportunities.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

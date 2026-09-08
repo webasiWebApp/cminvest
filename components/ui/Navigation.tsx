@@ -157,8 +157,18 @@ export const Navigation = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className={cn("text-2xl font-bold tracking-tight transition-colors", isScrolled ? "text-navy-dark" : "text-white")}>
-              CM INVESTMENTS
+            <Link href="/" className="flex flex-col group">
+              <span className={cn("text-2xl font-bold tracking-tight transition-colors leading-tight", isScrolled ? "text-navy-dark" : "text-white")}>
+                CM INVESTMENTS
+              </span>
+              <span
+                className={cn(
+                  "text-[10px] sm:text-xs font-[300] tracking-wide transition-colors whitespace-nowrap",
+                  isScrolled ? "text-navy-dark/80" : "text-white/80"
+                )}
+              >
+                Emerging Entrepreneurs & Enterprises
+              </span>
             </Link>
           </div>
 

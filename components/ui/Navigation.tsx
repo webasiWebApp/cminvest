@@ -167,7 +167,7 @@ export const Navigation = () => {
                   isScrolled ? "text-navy-dark/80" : "text-white/80"
                 )}
               >
-                Emerging Entrepreneurs & Enterprises
+                Invest · Build · Create Tomorrow
               </span>
             </Link>
           </div>

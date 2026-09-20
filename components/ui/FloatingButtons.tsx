@@ -40,7 +40,7 @@ export default function FloatingButtons() {
       label: "1M CM E3™",
       tooltip: "Emerging Entrepreneurs & Enterprises ",
       icon: <Rocket size={15} />,
-      href: "/million-project#apply",
+      href: "/million-project",
       bg: "linear-gradient(135deg, #065f46 0%, #059669 100%)",
       bgHover: "linear-gradient(135deg, #064e3b 0%, #047857 100%)",
       shadow: "0 8px 32px rgba(5,150,105,0.40)",
@@ -64,7 +64,7 @@ export default function FloatingButtons() {
       const currentPath = window.location.pathname;
       const currentSearch = window.location.search;
 
-      // 1. Same-page hash navigation (e.g. already on /million-project and clicking /million-project#apply)
+      // 1. Same-page hash navigation
       if (targetHash && currentPath === targetPath) {
         e.preventDefault();
         const elementId = targetHash.replace("#", "");
@@ -87,6 +87,16 @@ export default function FloatingButtons() {
           router.push(href);
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
+        return;
+      }
+
+      // 3. Re-clicking when already on /million-project -> smooth scroll to top
+      if (currentPath === "/million-project" && targetPath === "/million-project") {
+        e.preventDefault();
+        if (window.location.hash) {
+          window.history.pushState(null, "", "/million-project");
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
     } catch {

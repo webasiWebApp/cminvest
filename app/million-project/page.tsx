@@ -9,6 +9,7 @@ import { IndustryCard } from "@/components/ui/IndustryCard";
 import { FounderCard } from "@/components/ui/FounderCard";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
+import { PhoneVerification } from "@/components/ui/PhoneVerification";
 
 const SL_DISTRICTS = ["Ampara","Anuradhapura","Badulla","Batticaloa","Colombo","Galle","Gampaha","Hambantota","Jaffna","Kalutara","Kandy","Kegalle","Kilinochchi","Kurunegala","Mannar","Matale","Matara","Monaragala","Mullaitivu","Nuwara Eliya","Polonnaruwa","Puttalam","Ratnapura","Trincomalee","Vavuniya"];
 const inputStyles = "w-full px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-light focus:border-transparent transition-all text-sm";
@@ -83,10 +84,12 @@ export default function MillionProjectPage() {
   const [applyData, setApplyData] = useState(initialApplyData);
   const [applyStatus, setApplyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [applyError, setApplyError] = useState("");
+  const [isApplyPhoneVerified, setIsApplyPhoneVerified] = useState(false);
 
   const [partnerData, setPartnerData] = useState(initialPartnerData);
   const [partnerStatus, setPartnerStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [partnerError, setPartnerError] = useState("");
+  const [isPartnerPhoneVerified, setIsPartnerPhoneVerified] = useState(false);
 
   const onApplyChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -100,6 +103,7 @@ export default function MillionProjectPage() {
 
   const onApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isApplyPhoneVerified) return;
     setApplyStatus("loading");
     setApplyError("");
     try {
@@ -123,6 +127,7 @@ export default function MillionProjectPage() {
 
   const onPartnerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isPartnerPhoneVerified) return;
     setPartnerStatus("loading");
     setPartnerError("");
     try {
@@ -434,6 +439,7 @@ export default function MillionProjectPage() {
                     onClick={() => {
                       setPartnerStatus("idle");
                       setPartnerData(initialPartnerData);
+                      setIsPartnerPhoneVerified(false);
                     }}
                     className="mt-5 text-xs font-bold text-navy-dark bg-white hover:bg-neutral-100 px-5 py-2.5 rounded-full border border-neutral-200 transition-colors shadow-sm"
                   >
@@ -442,17 +448,32 @@ export default function MillionProjectPage() {
                 </div>
               ) : (
                 <form onSubmit={onPartnerSubmit} className="space-y-5">
-                  {[
-                    {id:"name",label:"Full Name *",type:"text",placeholder:"Your name",req:true},
-                    {id:"email",label:"Email *",type:"email",placeholder:"you@example.com",req:true},
-                    {id:"phone",label:"Phone *",type:"tel",placeholder:"+94 77 000 0000",req:true},
-                    {id:"company",label:"Company / Organisation",type:"text",placeholder:"Optional",req:false}
-                  ].map(f => (
-                    <div key={f.id}>
-                      <label htmlFor={`p-${f.id}`} className={labelStyles}>{f.label}</label>
-                      <input id={`p-${f.id}`} type={f.type} name={f.id} required={f.req} placeholder={f.placeholder} value={(partnerData as any)[f.id]} onChange={onPartnerChange} className={inputStyles} />
-                    </div>
-                  ))}
+                  <div>
+                    <label htmlFor="p-name" className={labelStyles}>Full Name *</label>
+                    <input id="p-name" type="text" name="name" required placeholder="Your name" value={partnerData.name} onChange={onPartnerChange} className={inputStyles} />
+                  </div>
+                  <div>
+                    <label htmlFor="p-email" className={labelStyles}>Email *</label>
+                    <input id="p-email" type="email" name="email" required placeholder="you@example.com" value={partnerData.email} onChange={onPartnerChange} className={inputStyles} />
+                  </div>
+                  <div>
+                    <PhoneVerification
+                      id="p-phone"
+                      name="phone"
+                      value={partnerData.phone}
+                      onChange={(val) => setPartnerData((p) => ({ ...p, phone: val }))}
+                      onVerifiedChange={setIsPartnerPhoneVerified}
+                      required
+                      label="Phone *"
+                      labelClassName={labelStyles}
+                      inputClassName={inputStyles}
+                      placeholder="+94 77 000 0000"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="p-company" className={labelStyles}>Company / Organisation</label>
+                    <input id="p-company" type="text" name="company" placeholder="Optional" value={partnerData.company} onChange={onPartnerChange} className={inputStyles} />
+                  </div>
                   <div>
                     <label htmlFor="p-investmentInterest" className={labelStyles}>Investment Interest *</label>
                     <select id="p-investmentInterest" name="investmentInterest" required value={partnerData.investmentInterest} onChange={onPartnerChange} className={inputStyles}>
@@ -481,7 +502,12 @@ export default function MillionProjectPage() {
                       {partnerError || "Something went wrong. Please email cm@pearlbay.com directly."}
                     </div>
                   )}
-                  <Button type="submit" variant="primary" size="md" className="w-full mt-4" loading={partnerStatus === "loading"} disabled={partnerStatus === "loading"}>
+                  {!isPartnerPhoneVerified && (
+                    <p className="text-xs text-neutral-400 mt-2 text-center">
+                      * Please verify your phone number via SMS OTP above to enable submission.
+                    </p>
+                  )}
+                  <Button type="submit" variant="primary" size="md" className="w-full mt-4" loading={partnerStatus === "loading"} disabled={partnerStatus === "loading" || !isPartnerPhoneVerified}>
                     {partnerStatus === "loading" ? "Submitting..." : "Become a Partner"}
                   </Button>
                 </form>
@@ -509,6 +535,7 @@ export default function MillionProjectPage() {
                 onClick={() => {
                   setApplyStatus("idle");
                   setApplyData(initialApplyData);
+                  setIsApplyPhoneVerified(false);
                 }}
                 className="mt-6 inline-flex items-center px-6 py-2.5 text-sm font-semibold text-green-900 bg-green-200/70 hover:bg-green-200 rounded-full transition-colors"
               >
@@ -525,8 +552,21 @@ export default function MillionProjectPage() {
                   <div><label htmlFor="a-age" className={labelStyles}>Age *</label><input id="a-age" type="number" name="age" required min="10" max="120" value={applyData.age} onChange={onApplyChange} className={inputStyles} placeholder="e.g. 28" /></div>
                   <div><label htmlFor="a-district" className={labelStyles}>District *</label><select id="a-district" name="district" required value={applyData.district} onChange={onApplyChange} className={inputStyles}><option value="" disabled>Select district</option>{SL_DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}</select></div>
                   <div><label htmlFor="a-email" className={labelStyles}>Email *</label><input id="a-email" type="email" name="email" required value={applyData.email} onChange={onApplyChange} className={inputStyles} placeholder="you@example.com" /></div>
-                  <div><label htmlFor="a-phone" className={labelStyles}>Phone *</label><input id="a-phone" type="tel" name="phone" required value={applyData.phone} onChange={onApplyChange} className={inputStyles} placeholder="+94 77 000 0000" /></div>
-                  <div><label htmlFor="a-bg" className={labelStyles}>Professional Background</label><textarea id="a-bg" name="background" rows={3} value={applyData.background} onChange={onApplyChange} className={inputStyles} placeholder="Brief professional or educational background..." /></div>
+                  <div className="md:col-span-2">
+                    <PhoneVerification
+                      id="a-phone"
+                      name="phone"
+                      value={applyData.phone}
+                      onChange={(val) => setApplyData((p) => ({ ...p, phone: val }))}
+                      onVerifiedChange={setIsApplyPhoneVerified}
+                      required
+                      label="Phone *"
+                      labelClassName={labelStyles}
+                      inputClassName={inputStyles}
+                      placeholder="+94 77 000 0000"
+                    />
+                  </div>
+                  <div className="md:col-span-2"><label htmlFor="a-bg" className={labelStyles}>Professional Background</label><textarea id="a-bg" name="background" rows={3} value={applyData.background} onChange={onApplyChange} className={inputStyles} placeholder="Brief professional or educational background..." /></div>
                 </div>
               </div>
               {/* 2. Business */}
@@ -595,7 +635,12 @@ export default function MillionProjectPage() {
                 </div>
               )}
               <div className="text-center mt-8">
-                <Button type="submit" variant="primary" size="lg" className="px-12" loading={applyStatus === "loading"} disabled={applyStatus === "loading"}>
+                {!isApplyPhoneVerified && (
+                  <p className="text-xs text-neutral-400 mb-3">
+                    * Please verify your phone number via SMS OTP above to enable submission.
+                  </p>
+                )}
+                <Button type="submit" variant="primary" size="lg" className="px-12" loading={applyStatus === "loading"} disabled={applyStatus === "loading" || !isApplyPhoneVerified}>
                   {applyStatus === "loading" ? "Submitting Application..." : "Submit My Project"}
                 </Button>
               </div>

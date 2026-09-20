@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
+import { PhoneVerification } from "@/components/ui/PhoneVerification";
 import countriesData from "../../countries.json";
 
 export function InvestmentForm() {
@@ -18,6 +19,7 @@ export function InvestmentForm() {
     description: "",
   });
 
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -29,6 +31,7 @@ export function InvestmentForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isPhoneVerified) return;
     setStatus("loading");
 
     try {
@@ -100,18 +103,19 @@ export function InvestmentForm() {
               />
             </div>
 
-            {/* Phone */}
+            {/* Phone with OTP Verification */}
             <div>
-              <label htmlFor="phone" className={labelStyles}>Phone Number *</label>
-              <input
-                type="tel"
+              <PhoneVerification
                 id="phone"
                 name="phone"
-                required
                 value={formData.phone}
-                onChange={handleChange}
-                className={inputStyles}
-                placeholder="+1 234 567 8900"
+                onChange={(val) => setFormData((prev) => ({ ...prev, phone: val }))}
+                onVerifiedChange={setIsPhoneVerified}
+                required
+                label="Phone Number *"
+                labelClassName={labelStyles}
+                inputClassName={inputStyles}
+                placeholder="+94 77 000 0000"
               />
             </div>
 
@@ -210,15 +214,22 @@ export function InvestmentForm() {
                 <p>Thank you for your interest. Our team will get back to you shortly.</p>
               </div>
             ) : (
-              <Button 
-                type="submit" 
-                variant="primary" 
-                size="lg" 
-                className="w-full md:w-auto px-12 py-4 rounded-full"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "Submitting..." : "Submit Application"}
-              </Button>
+              <div>
+                {!isPhoneVerified && (
+                  <p className="text-xs text-neutral-400 mb-3">
+                    * Please verify your phone number via SMS OTP to enable submission.
+                  </p>
+                )}
+                <Button 
+                  type="submit" 
+                  variant="primary" 
+                  size="lg" 
+                  className="w-full md:w-auto px-12 py-4 rounded-full"
+                  disabled={status === "loading" || !isPhoneVerified}
+                >
+                  {status === "loading" ? "Submitting..." : "Submit Application"}
+                </Button>
+              </div>
             )}
           </div>
         </form>

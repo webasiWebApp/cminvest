@@ -116,11 +116,11 @@ export default function MillionProjectPage() {
       if (r.ok && res.success !== false) {
         setApplyStatus("success");
       } else {
-        setApplyError(res.error || "Failed to submit application. Please try again or email cm@pearlbay.com directly.");
+        setApplyError(res.error || "Failed to submit application. Please try again or email hello@cminvest.co directly.");
         setApplyStatus("error");
       }
     } catch {
-      setApplyError("Network connection error. Please try again or email cm@pearlbay.com directly.");
+      setApplyError("Network connection error. Please try again or email hello@cminvest.co directly.");
       setApplyStatus("error");
     }
   };
@@ -140,11 +140,11 @@ export default function MillionProjectPage() {
       if (r.ok && res.success !== false) {
         setPartnerStatus("success");
       } else {
-        setPartnerError(res.error || "Failed to submit enquiry. Please try again or email cm@pearlbay.com directly.");
+        setPartnerError(res.error || "Failed to submit enquiry. Please try again or email hello@cminvest.co directly.");
         setPartnerStatus("error");
       }
     } catch {
-      setPartnerError("Network connection error. Please try again or email cm@pearlbay.com directly.");
+      setPartnerError("Network connection error. Please try again or email hello@cminvest.co directly.");
       setPartnerStatus("error");
     }
   };
@@ -499,7 +499,7 @@ export default function MillionProjectPage() {
 
                   {partnerStatus === "error" && (
                     <div className="bg-red-50 text-red-600 text-sm p-3.5 rounded-xl border border-red-200">
-                      {partnerError || "Something went wrong. Please email cm@pearlbay.com directly."}
+                      {partnerError || "Something went wrong. Please email hello@cminvest.co directly."}
                     </div>
                   )}
                   {!isPartnerPhoneVerified && (
@@ -608,7 +608,7 @@ export default function MillionProjectPage() {
                 <h3 className="text-sm font-bold text-navy-dark uppercase tracking-wider mb-2">Supporting Documents</h3>
                 <p className="text-neutral-600 text-sm leading-relaxed">
                   If you have a business plan, pitch deck, financial projections, or product information, email them separately to{" "}
-                  <a href="mailto:cm@pearlbay.com?subject=Million%20Project%20Supporting%20Documents" className="text-navy-light underline">cm@pearlbay.com</a>{" "}
+                  <a href="mailto:hello@cminvest.co?subject=Million%20Project%20Supporting%20Documents" className="text-navy-light underline">hello@cminvest.co</a>{" "}
                   with your name and business name in the subject line.{" "}
                   <span className="italic text-neutral-400">Document upload via this form is coming soon.</span>
                 </p>
@@ -631,7 +631,7 @@ export default function MillionProjectPage() {
 
               {applyStatus === "error" && (
                 <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-200 text-center">
-                  {applyError || "Something went wrong. Please email cm@pearlbay.com directly."}
+                  {applyError || "Something went wrong. Please email hello@cminvest.co directly."}
                 </div>
               )}
               <div className="text-center mt-8">
@@ -665,7 +665,7 @@ export default function MillionProjectPage() {
               biography={
                 <p>Chathura Masinha is the Founder and Principal of CM Investments (Pvt) Ltd., connecting global capital with transformational opportunities across Sri Lanka and international markets. The CM Million Project CM E3™ is his flagship entrepreneurial initiative.</p>
               }
-              linkedInUrl="mailto:cm@pearlbay.com"
+              linkedInUrl="mailto:hello@cminvest.co"
             />
           </motion.div>
         </div>
@@ -683,7 +683,7 @@ export default function MillionProjectPage() {
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
                 <Button variant="secondary" size="lg" href="#apply">Apply for Funding</Button>
                 <Button variant="primary" size="lg" href="#partner">Partner With Us</Button>
-                <Button variant="secondary" size="lg" href="mailto:cm@pearlbay.com?subject=Million%20Project%20Investor%20Enquiry">Invest in the Movement</Button>
+                <Button variant="secondary" size="lg" href="mailto:hello@cminvest.co?subject=Million%20Project%20Investor%20Enquiry">Invest in the Movement</Button>
               </div>
             </div>
           </motion.div>

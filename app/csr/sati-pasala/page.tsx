@@ -60,7 +60,7 @@ export default function SatiPasalaPage() {
             <a href="https://www.satipasala.org/" target="_blank" rel="noopener noreferrer" className="px-8 py-3.5 rounded-full border border-blue-500 bg-blue-600/10 text-blue-400 text-sm font-bold hover:bg-blue-600 hover:text-white focus-visible:outline-none transition-colors">
               Visit satipasala.org
             </a>
-            <a href="mailto:cm@pearlbay.com?subject=Support%20Sati%20Pasala%20Initiative" className="px-8 py-3.5 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 focus-visible:outline-none transition-colors">
+            <a href="mailto:hello@cminvest.co?subject=Support%20Sati%20Pasala%20Initiative" className="px-8 py-3.5 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 focus-visible:outline-none transition-colors">
               Support the Initiative
             </a>
           </div>

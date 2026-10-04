@@ -22,7 +22,7 @@ export const StatCounter = ({
   label,
 }: StatCounterProps) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, amount: "some" });
   
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, {

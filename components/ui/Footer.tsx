@@ -25,13 +25,13 @@ export const Footer = () => {
               Connecting Capital. Creating Opportunity. Building Sustainable Futures.
             </p>
             <div className="flex flex-col space-y-2 pt-2">
-              <a href="mailto:hello@cminvest.co" className="inline-flex items-center space-x-2 text-neutral-300 hover:text-white transition-colors text-sm">
+              <a href="mailto:hello@cminvests.co" className="inline-flex items-center space-x-2 text-neutral-300 hover:text-white transition-colors text-sm">
                 <Mail className="w-4 h-4 text-navy-light" />
-                <span>hello@cminvest.co</span>
+                <span>hello@cminvests.co</span>
               </a>
             </div>
             <div className="flex space-x-4 pt-1">
-              <a href="mailto:hello@cminvest.co" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a href="mailto:hello@cminvests.co" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
                 <Mail className="w-4 h-4 text-white" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -56,7 +56,7 @@ export const Footer = () => {
             <Link href="#gallery" className="text-neutral-300 hover:text-white transition-colors text-sm">Global Footprint</Link>
             <Link href="/million-project" className="text-neutral-300 hover:text-white transition-colors text-sm">Million Project</Link>
             <Link href="/service" className="text-neutral-300 hover:text-white transition-colors text-sm">Our Services</Link>
-            <a href="mailto:hello@cminvest.co" className="text-neutral-300 hover:text-white transition-colors text-sm">Contact Us</a>
+            <a href="mailto:hello@cminvests.co" className="text-neutral-300 hover:text-white transition-colors text-sm">Contact Us</a>
           </div>
 
           {/* Newsletter */}
@@ -65,7 +65,7 @@ export const Footer = () => {
             <p className="text-neutral-400 text-sm mb-2">
               Stay informed with investment insights, market trends, and new project opportunities.
             </p>
-            <form className="flex border-b border-white/20 pb-2 focus-within:border-white transition-colors" onSubmit={(e) => { e.preventDefault(); window.location.href = 'mailto:hello@cminvest.co'; }}>
+            <form className="flex border-b border-white/20 pb-2 focus-within:border-white transition-colors" onSubmit={(e) => { e.preventDefault(); window.location.href = 'mailto:hello@cminvests.co'; }}>
               <input 
                 type="email" 
                 placeholder="Email Address" 

@@ -101,7 +101,7 @@ export default function CSRPage() {
             Our social commitments are not transactional marketing gestures. They are long-term partnerships driven by accountability, humility, and genuine dedication to the welfare of Sri Lanka&apos;s people, children, and environment.
           </p>
           <a
-            href="mailto:hello@cminvest.co?subject=CSR%20Partnership%20Enquiry"
+            href="mailto:hello@cminvests.co?subject=CSR%20Partnership%20Enquiry"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-navy-dark text-navy-dark text-sm font-medium hover:bg-navy-dark hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-light transition-colors"
           >
             Get in Touch Regarding Our Initiatives

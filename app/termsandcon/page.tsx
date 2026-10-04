@@ -466,7 +466,7 @@ You further acknowledge that investment and business activities involve risk, th
 
 **Building Sustainable Investments. Connecting Global Capital with Transformational Opportunities.**
 
-**Contact:** hello@cminvest.co 
+**Contact:** hello@cminvests.co 
 **Company Registration No.:** PV00328852
 `;
 

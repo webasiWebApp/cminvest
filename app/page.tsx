@@ -57,7 +57,7 @@ export default function Home() {
                 variant="primary" 
                 size="lg" 
                 className="px-10 py-4 font-semibold uppercase tracking-wide text-sm rounded-full bg-navy-light hover:bg-navy-light/90 border border-white/20"
-                href="mailto:hello@cminvest.co"
+                href="mailto:hello@cminvests.co"
               >
                 Submit Your Project
               </Button>
@@ -178,7 +178,7 @@ export default function Home() {
               variant="primary" 
               size="md" 
               className="px-8 py-4 rounded-full"
-              href="mailto:hello@cminvest.co"
+              href="mailto:hello@cminvests.co"
             >
               Book a Consultation
             </Button>
@@ -447,7 +447,7 @@ export default function Home() {
               variant="primary" 
               size="md"
               className="hidden md:inline-flex rounded-full px-8 py-4"
-              href="mailto:hello@cminvest.co?subject=Industry%20Partnership%20Inquiry"
+              href="mailto:hello@cminvests.co?subject=Industry%20Partnership%20Inquiry"
             >
               Discuss Your Sector
             </Button>
@@ -461,7 +461,7 @@ export default function Home() {
               tags={["Renewables", "Clean Power", "Infrastructure"]}
               imageSrc="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=800&auto=format&fit=crop"
               imageAlt="Energy Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Energy%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Energy%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="02"
@@ -470,7 +470,7 @@ export default function Home() {
               tags={["Pharma", "Medical Tech", "Healthcare"]}
               imageSrc="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
               imageAlt="Healthcare and Pharmaceuticals Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Healthcare%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Healthcare%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="03"
@@ -479,7 +479,7 @@ export default function Home() {
               tags={["Academia", "Institutes", "Skill Building"]}
               imageSrc="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop"
               imageAlt="Education Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Education%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Education%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="04"
@@ -488,7 +488,7 @@ export default function Home() {
               tags={["Enterprise Tech", "Fintech", "AI & Cloud"]}
               imageSrc="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
               imageAlt="Technology & Software Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Technology%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Technology%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="05"
@@ -497,7 +497,7 @@ export default function Home() {
               tags={["Music Industry","Broadcasting"]}
               imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
               imageAlt="Financial Services Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Financial%20Services%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Financial%20Services%20Inquiry'}
             />
             <IndustryCard 
               number="06"
@@ -506,7 +506,7 @@ export default function Home() {
               tags={["Precious Metals", "Minerals", "Trade"]}
               imageSrc="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=800&auto=format&fit=crop"
               imageAlt="Metals Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Metals%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Metals%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="07"
@@ -515,7 +515,7 @@ export default function Home() {
               tags={["Strategic Advisory", "Corporate M&A", "Consulting"]}
               imageSrc="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
               imageAlt="Professional Services and Consulting Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Consulting%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Consulting%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="08"
@@ -524,7 +524,7 @@ export default function Home() {
               tags={["Resorts", "Eco-Tourism", "Leisure"]}
               imageSrc="https://images.unsplash.com/photo-1542314831-c6a4d14d837e?q=80&w=800&auto=format&fit=crop"
               imageAlt="Hospitality and Tourism Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Hospitality%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Hospitality%20Sector%20Inquiry'}
             />
             <IndustryCard 
               number="09"
@@ -533,7 +533,7 @@ export default function Home() {
               tags={["Agri-Tech", "Sustainability", "Export"]}
               imageSrc="https://images.unsplash.com/photo-1592982537447-6f2a6a0c5989?q=80&w=800&auto=format&fit=crop"
               imageAlt="Agriculture Sector"
-              onExplore={() => window.location.href = 'mailto:hello@cminvest.co?subject=Agriculture%20Sector%20Inquiry'}
+              onExplore={() => window.location.href = 'mailto:hello@cminvests.co?subject=Agriculture%20Sector%20Inquiry'}
             />
           </div>
 
@@ -541,7 +541,7 @@ export default function Home() {
             <Button 
               variant="primary" 
               className="w-full sm:w-auto rounded-full"
-              href="mailto:hello@cminvest.co?subject=Industry%20Partnership%20Inquiry"
+              href="mailto:hello@cminvests.co?subject=Industry%20Partnership%20Inquiry"
             >
               Discuss Your Sector
             </Button>
@@ -565,32 +565,32 @@ export default function Home() {
             <Button 
               variant="text" 
               className="hidden md:inline-flex mb-2 text-lg"
-              href="mailto:hello@cminvest.co"
+              href="mailto:hello@cminvests.co"
             >
               Submit Your Project
             </Button>
           </div>
 
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 max-w-6xl mx-auto mt-12">
-            <a href="mailto:hello@cminvest.co?subject=Inquiry%20regarding%20Bussa" className="flex flex-col items-center gap-5 group" title="Bussa">
+            <a href="mailto:hello@cminvests.co?subject=Inquiry%20regarding%20Bussa" className="flex flex-col items-center gap-5 group" title="Bussa">
               <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/bussa.jpg" alt="Bussa" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
             </a>
             
-            <a href="mailto:hello@cminvest.co?subject=Inquiry%20regarding%20Pearlbay" className="flex flex-col items-center gap-5 group" title="Pearlbay">
+            <a href="mailto:hello@cminvests.co?subject=Inquiry%20regarding%20Pearlbay" className="flex flex-col items-center gap-5 group" title="Pearlbay">
               <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/pearlbay.png" alt="Pearlbay" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
             </a>
             
-            <a href="mailto:hello@cminvest.co?subject=Inquiry%20regarding%20Turu" className="flex flex-col items-center gap-5 group" title="Turu">
+            <a href="mailto:hello@cminvests.co?subject=Inquiry%20regarding%20Turu" className="flex flex-col items-center gap-5 group" title="Turu">
               <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/turu.png" alt="Turu" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
             </a>
 
-            <a href="mailto:hello@cminvest.co?subject=Inquiry%20regarding%20Nulife%20Biotech" className="flex flex-col items-center gap-5 group" title="Nulife Biotech">
+            <a href="mailto:hello@cminvests.co?subject=Inquiry%20regarding%20Nulife%20Biotech" className="flex flex-col items-center gap-5 group" title="Nulife Biotech">
               <div className="w-32 h-32 md:w-44 md:h-44 relative flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-2">
                 <img src="/company logos/nulife.jpeg" alt="Nulife Biotech" className="max-w-full max-h-full object-contain transition-all duration-500 mix-blend-multiply" />
               </div>
@@ -601,7 +601,7 @@ export default function Home() {
             <Button 
               variant="secondary" 
               className="w-full sm:w-auto"
-              href="mailto:hello@cminvest.co"
+              href="mailto:hello@cminvests.co"
             >
               Submit Your Project
             </Button>
@@ -636,7 +636,7 @@ export default function Home() {
           quote="Every project should strengthen communities, generate employment, encourage innovation, protect the environment, and deliver fair returns for every stakeholder involved."
           imageSrc="/chathura-masinha.jpg"
           imageAlt="Chathura Masinha Portrait"
-          linkedInUrl="mailto:hello@cminvest.co"
+          linkedInUrl="mailto:hello@cminvests.co"
         />
       </section>
 
@@ -648,7 +648,7 @@ export default function Home() {
         title="Ready to Take Your Business to the Next Level?"
         description="Let's discuss your project. Schedule a confidential consultation with our advisory team to explore funding, strategic partnerships, and growth opportunities."
         buttonText="Book a Consultation"
-        buttonHref="mailto:hello@cminvest.co"
+        buttonHref="mailto:hello@cminvests.co"
       />
 
       {/* SECTION 13: Footer */}

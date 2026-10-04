@@ -187,7 +187,7 @@ export async function POST(request: Request) {
     }
 
     const htmlContent = generateEmailHtml(data);
-    const recipient = process.env.CONTACT_EMAIL || 'hello@cminvest.co';
+    const recipient = process.env.CONTACT_EMAIL || 'hello@cminvests.co';
     const sender = process.env.RESEND_FROM || 'CM <info@cminvests.co>';
 
     let emailSent = false;

@@ -322,7 +322,7 @@ export default function WhyInvestSriLankaPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
                <Button variant="primary" size="lg" href="#enquiry" className="rounded-xl px-6 py-4">Explore Investment Opportunities</Button>
-               <Button variant="secondary" size="lg" href="mailto:hello@cminvest.co" className="rounded-xl px-6 py-4 bg-white">Talk to CM Investments</Button>
+               <Button variant="secondary" size="lg" href="mailto:hello@cminvests.co" className="rounded-xl px-6 py-4 bg-white">Talk to CM Investments</Button>
             </div>
             
             <div className="mt-12 p-8 bg-navy-dark rounded-3xl text-white">

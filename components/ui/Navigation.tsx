@@ -188,7 +188,7 @@ export const Navigation = () => {
               ))}
             </div>
             
-            <Button variant="primary" size="sm" href="mailto:hello@cminvest.co">
+            <Button variant="primary" size="sm" href="mailto:hello@cminvests.co">
                Say Hello
             </Button>
 
@@ -290,7 +290,7 @@ export const Navigation = () => {
               </div>
 
               <div className="mt-auto pt-8 border-t border-neutral-100">
-                <Button variant="primary" size="md" className="w-full" href="mailto:hello@cminvest.co" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="primary" size="md" className="w-full" href="mailto:hello@cminvests.co" onClick={() => setIsMobileMenuOpen(false)}>
                    Say Hello
                 </Button>
               </div>

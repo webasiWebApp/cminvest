@@ -86,13 +86,13 @@ export default function EducateAChildPage() {
           <MarkdownRenderer content={markdownContent.trim()} />
           
           <div className="mt-12 flex flex-wrap gap-4">
-            <a href="mailto:hello@cminvest.co?subject=Support%20Educate%20a%20Child%20Initiative" className="px-8 py-3.5 rounded-full border border-blue-500 bg-blue-600/10 text-blue-400 text-sm font-bold hover:bg-blue-600 hover:text-white focus-visible:outline-none transition-colors">
+            <a href="mailto:hello@cminvests.co?subject=Support%20Educate%20a%20Child%20Initiative" className="px-8 py-3.5 rounded-full border border-blue-500 bg-blue-600/10 text-blue-400 text-sm font-bold hover:bg-blue-600 hover:text-white focus-visible:outline-none transition-colors">
               Support the Initiative
             </a>
-            <a href="mailto:hello@cminvest.co?subject=Partner%20With%20Us%20-%20Educate%20a%20Child" className="px-8 py-3.5 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 focus-visible:outline-none transition-colors">
+            <a href="mailto:hello@cminvests.co?subject=Partner%20With%20Us%20-%20Educate%20a%20Child" className="px-8 py-3.5 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 focus-visible:outline-none transition-colors">
               Partner With Us
             </a>
-            <a href="mailto:hello@cminvest.co?subject=Sponsor%20a%20Child's%20Education" className="px-8 py-3.5 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 focus-visible:outline-none transition-colors">
+            <a href="mailto:hello@cminvests.co?subject=Sponsor%20a%20Child's%20Education" className="px-8 py-3.5 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 focus-visible:outline-none transition-colors">
               Sponsor a Child's Education
             </a>
           </div>

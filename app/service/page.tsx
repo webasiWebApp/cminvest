@@ -282,7 +282,7 @@ function ServiceContent() {
                 imageSrc={svc.imageSrc}
                 imageAlt={svc.imageAlt}
                 onAction={() =>
-                  (window.location.href = `mailto:hello@cminvest.co?subject=Inquiry%20regarding%20${encodeURIComponent(svc.title)}`)
+                  (window.location.href = `mailto:hello@cminvests.co?subject=Inquiry%20regarding%20${encodeURIComponent(svc.title)}`)
                 }
               />
             ))}
@@ -300,7 +300,7 @@ function ServiceContent() {
             Our team is ready to assist you. Reach out and we will respond within one business day.
           </p>
           <a
-            href={`mailto:hello@cminvest.co?subject=${cfg.ctaMailSubject}`}
+            href={`mailto:hello@cminvests.co?subject=${cfg.ctaMailSubject}`}
             className={`inline-flex items-center gap-2 font-bold text-sm tracking-wide rounded-full px-9 py-4 transition-all duration-300 ${cfg.ctaClass}`}
           >
             {cfg.ctaLabel}

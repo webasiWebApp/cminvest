@@ -39,7 +39,7 @@ export default function TARRCPage() {
           <MarkdownRenderer content={markdownContent.trim()} />
           
           <div className="mt-12 flex flex-wrap gap-4">
-            <a href="mailto:hello@cminvest.co?subject=Support%20TARRC%20Initiative" className="px-8 py-3.5 rounded-full border border-blue-500 bg-blue-600/10 text-blue-400 text-sm font-bold hover:bg-blue-600 hover:text-white focus-visible:outline-none transition-colors">
+            <a href="mailto:hello@cminvests.co?subject=Support%20TARRC%20Initiative" className="px-8 py-3.5 rounded-full border border-blue-500 bg-blue-600/10 text-blue-400 text-sm font-bold hover:bg-blue-600 hover:text-white focus-visible:outline-none transition-colors">
               Support the Initiative
             </a>
           </div>

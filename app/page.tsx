@@ -16,6 +16,7 @@ import { IndustryCard } from "@/components/ui/IndustryCard";
 import { PortfolioCard } from "@/components/ui/PortfolioCard";
 import { GlobalPresence } from "@/components/ui/GlobalPresence";
 import { Gallery } from "@/components/ui/Gallery";
+import { PressRelease } from "@/components/ui/PressRelease";
 import { FounderCard } from "@/components/ui/FounderCard";
 import { CTABanner } from "@/components/ui/CTABanner";
 import { Footer } from "@/components/ui/Footer";
@@ -613,6 +614,9 @@ export default function Home() {
 
       {/* SECTION 10: Global Gallery Section */}
       <Gallery />
+
+      {/* SECTION 10.5: Press Release Section */}
+      <PressRelease />
 
       {/* SECTION 11: Founder Section */}
       <section className="py-24 md:py-32 px-6 md:px-12 bg-white">

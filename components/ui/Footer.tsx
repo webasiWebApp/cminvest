@@ -27,7 +27,7 @@ export const Footer = () => {
             <div className="flex flex-col space-y-2 pt-2">
               <a href="mailto:hello@cminvest.co" className="inline-flex items-center space-x-2 text-neutral-300 hover:text-white transition-colors text-sm">
                 <Mail className="w-4 h-4 text-navy-light" />
-                <span>hello@cminvest.com</span>
+                <span>hello@cminvest.co</span>
               </a>
             </div>
             <div className="flex space-x-4 pt-1">
